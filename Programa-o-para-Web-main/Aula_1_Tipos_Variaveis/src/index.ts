@@ -2,6 +2,8 @@
 let idade: number = 25;
 let altura: number = 1.75;
 
+let abc = "michely"; // inferencia 
+
 // Tipo string para texto
 let nome: string = "João";
 let sobrenome: string = 'Silva';
@@ -18,7 +20,7 @@ let nomes: string[] = ["Maria", "João", "Ana"];
 let pessoa: [string, number] = ["João", 25];
 
 // Tipo any para qualquer tipo de valor (evitar usar quando possível)
-let valorQualquer: any = 10;
+let valorQualquer: any = 10; // any = qualquer valor
 valorQualquer = "abc";
 valorQualquer = true;
 
@@ -73,6 +75,6 @@ let visitante = { nome: "João", idade: 30 };
 
 
 
-
+// comando usado para reverter erros de execução na maquina set-ExecutionPolicy unrestricted
 
 
