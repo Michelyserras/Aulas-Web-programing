@@ -1,4 +1,4 @@
-## ![TYPESCRIPT](https://www.flaticon.com/free-icon/typescript_5968381)   
+  
 
 # **PRIMEIRO CONTATO** 
 
