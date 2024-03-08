@@ -62,6 +62,11 @@ class Carro {
   
    
   const meuCarro = new Carro("Toyota", "Corolla", 2020, "Prata");
+
+  const meu2Carro = new Carro("Fiat", "Mobi", 2018, "Preto" );
   
+  console.log("Exercicio 1 - \n ");
   meuCarro.exibirInfo();
+  meu2Carro.exibirInfo();
+  console.log("A idade do seu carro é: ", meu2Carro.calcularIdade(2024));
     
