@@ -44,3 +44,5 @@ console.log("Exercicio 1 - \n ");
 meuCarro.exibirInfo();
 meu2Carro.exibirInfo();
 console.log("A idade do seu carro é: ", meu2Carro.calcularIdade(2024));
+meu2Carro.setano = 1990;
+meu2Carro.exibirInfo();

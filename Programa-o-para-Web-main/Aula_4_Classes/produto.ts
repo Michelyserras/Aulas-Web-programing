@@ -84,4 +84,10 @@ console.log(p1);
 
 
 console.log("\n");
+p1.setnome = "Chocolate"
+p1.setpreco = 10.00;
+console.log(p1);
+
+p1.setqtdEmEstoque = 100;
+console.log(p1, p1.calcularValorTotalEmEstoque());
 

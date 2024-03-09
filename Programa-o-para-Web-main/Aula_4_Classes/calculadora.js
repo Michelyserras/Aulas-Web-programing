@@ -16,37 +16,29 @@ class Calculadora {
     set setnum2(num2) {
         this.num2 = num2;
     }
-    Soma() {
-        return this.num1 + this.num2;
+    Soma(num1, num2) {
+        return num1 + num2;
     }
-    Subtração() {
-        return this.num1 - this.num2;
+    Subtração(num1, num2) {
+        return num1 - num2;
     }
-
-    multiplicação() {
-        return this.num1 * this.num2;
+    multiplicação(num1, num2) {
+        return num1 * num2;
     }
-
-    divisão() {
-        if (this.num1 == 0 || this.num2 == 0)
+    divisão(num1, num2) {
+        if (num1 == 0 || num2 == 0)
             return 0;
-        return this.num1 / this.num2;
+        return num1 / num2;
     }
-    porcentagem() {
-        let porcentagem = this.num1 / 100;
-        return this.num2 * porcentagem;
+    porcentagem(num1, num2) {
+        let porcentagem = num1 / 100;
+        return num2 * porcentagem;
     }
 }
-const calc = new Calculadora();
-
-calc.setnum1 = 5;
-calc.setnum2 = 2;
-
-console.log(calc,'soma: ', calc.Soma());
-console.log(calc, 'Subtração: ', calc.Subtração());
-console.log(calc, 'Divisão: ', calc.divisão());
-console.log(calc, 'Multiplicação', calc.multiplicação());
-console.log(calc, 'Porcentagem: ', calc.porcentagem());
-
-calc.setnum2 = 0;
-console.log(calc,'\n Divisão por 0: ', calc, calc.divisão());
+const calc = new Calculadora(5, 2);
+console.log(calc.Soma(5, 2));
+console.log(calc.Subtração(5, 2));
+console.log(calc.divisão(5, -2));
+console.log(calc.divisão(5, 0));
+console.log(calc.multiplicação(5, -2));
+console.log(calc.porcentagem(5, 2));

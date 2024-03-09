@@ -59,3 +59,8 @@ console.log("O valor total em estoque é: ", p1.calcularValorTotalEmEstoque());
 console.log('Venda de 13 produtos, restam em estoque: ', p1.venderProduto(13));
 console.log(p1);
 console.log("\n");
+p1.setnome = "Chocolate";
+p1.setpreco = 10.00;
+console.log(p1);
+p1.setqtdEmEstoque = 100;
+console.log(p1, p1.calcularValorTotalEmEstoque());
