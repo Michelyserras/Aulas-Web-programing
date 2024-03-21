@@ -11,8 +11,8 @@ app.use(express_1.default.json());
 function appLog() {
     console.log("A API se encontra disponível no URL: http:// localhost:3000");
 }
-function hello(res, req) {
+function hello(req, res) {
     res.send("Hello World");
 }
-app.get("/app/hello", hello);
+app.get("/api/hello", hello);
 app.listen(PORT, appLog);
