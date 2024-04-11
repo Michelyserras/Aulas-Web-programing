@@ -13,10 +13,24 @@ export class ProductService{
         return novoProduto;
     }
 
-    consultarProduto(id:any): Product|undefined{
-        const idNumber: number = parseInt(id, 10);
+    consultarProduto(id:any, name:any): Product|undefined{
+        if(id && name){
+            const idNumber: number = parseInt(id, 10);
+            console.log("Com id e name", id, name);
+            console.log(id);
+            return this.productRepository.filtrarProdutoPorIDeNome(idNumber, name);
+        }
+        else if(id){
+            const idNumber: number = parseInt(id, 10);
+            console.log("Apenas id: ")
+            // parse int define um numero inteiro com 10 casas decimais.
+            return this.productRepository.filtrarProdutoPorID(id);
+        }
+        else if(name){
+            return this.productRepository.filtrarProdutoPorID(name);
+        }
         console.log(id);
-        return this.productRepository.filtrarProdutoPorID(idNumber);
+        return undefined
     }
 
     getProducts(): Product[]{

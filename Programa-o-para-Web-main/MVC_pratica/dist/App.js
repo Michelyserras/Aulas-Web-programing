@@ -10,9 +10,9 @@ const app = (0, express_1.default)();
 const PORT = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3000;
 app.use(express_1.default.json());
 function logInfo() {
-    console.log(` API em execucao no URL : http : localhost : 3000`);
+    console.log(` API em execucao no URL: http://localhost:3000`);
 }
-app.post("/api/ product", productController_1.cadastrarProduto);
-app.get("/ api/ product", productController_1.pesquisarProdutoPorID);
-app.get("/ api/ products", productController_1.listaProdutos);
+app.post("/api/product", productController_1.cadastrarProduto);
+app.get("/api/product", productController_1.pesquisarProdutoPorID);
+app.get("/api/products", productController_1.listaProdutos);
 app.listen(PORT, logInfo);

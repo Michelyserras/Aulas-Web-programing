@@ -16,10 +16,24 @@ class ProductService {
         this.productRepository.insereProduto(novoProduto);
         return novoProduto;
     }
-    consultarProduto(id) {
-        const idNumber = parseInt(id, 10);
+    consultarProduto(id, name) {
+        if (id && name) {
+            const idNumber = parseInt(id, 10);
+            console.log("Com id e name", id, name);
+            console.log(id);
+            return this.productRepository.filtrarProdutoPorIDeNome(idNumber, name);
+        }
+        else if (id) {
+            const idNumber = parseInt(id, 10);
+            console.log("Apenas id: ");
+            // parse int define um numero inteiro com 10 casas decimais.
+            return this.productRepository.filtrarProdutoPorID(id);
+        }
+        else if (name) {
+            return this.productRepository.filtrarProdutoPorID(name);
+        }
         console.log(id);
-        return this.productRepository.filtrarProdutoPorID(idNumber);
+        return undefined;
     }
     getProducts() {
         return this.productRepository.filtraTodosProdutos();
