@@ -1,5 +1,6 @@
 import express, {Request, Response} from "express";
 import { Produto } from "./Produto";
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 let estoque: Produto[] = []; // variavel global para armazenar os dados dos vetores
 
@@ -17,8 +18,12 @@ function addProduto(req: Request, res: Response){
 
     for(let i = 0; i<=newP.length; i++){
         estoque.push(newP[i]);
+        console.log("Produto novo: ", newP);
+        console.log("Estoque atualizado", newP[i]);
     }
+
     
+
     res.status(200).json(
         {
             Mensagem: "Produto adicionado com sucesso!",
@@ -30,31 +35,39 @@ function addProduto(req: Request, res: Response){
       
 }
 
-function filtrarProduto(id: number){
-    const productList: Produto[] = [];
-    console.log(id);
-    return productList.find(Produto => Produto.id === id);
+function filtrarProduto(idNumber: number): Produto| undefined{
+    //idNumber = parseInt(req.query.id as string, 10);
+    console.log("Procurando id:  ", idNumber);
+    return estoque.find((newP) => newP.id === idNumber);
+
+   /* console.log("Produto encontrado! ", pEncontrado);
+    return pEncontrado;*/
    
 }
 
 function procurarPorId(req: Request, res: Response){
     const idNumber = parseInt(req.query.id as string, 10); // converte o id para number
 
-    if(idNumber){
-        res.status(200).json(
-           {
-                Mensagem: `Você solicitou informacoes do produto com o id: ${idNumber}`,
-                produtos: filtrarProduto(idNumber),
-            }
-                
-        )
-    }
-    else
-        res.status(400).json(
+    /*const pEncontrado = estoque.find((Produto) => Produto.id === idNumber);
+    console.log("Produto encontrado! ", pEncontrado);*/
+     filtrarProduto(idNumber);
+        if(idNumber){
+            res.status(200).json(
             {
-                Mensagem: "Produto não encontrado!",
-            }
-        )
+                    Mensagem: `Você solicitou informacoes do produto com o id: ${idNumber}`,
+                    produtos: idNumber,
+                    
+                }
+                    
+            )
+        } else{
+            res.status(400).json(
+                {
+                    Mensagem: "Produto não encontrado!",
+                }
+            )
+        }
+            
 }
 
 

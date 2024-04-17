@@ -18,7 +18,7 @@ export function cadastrarProduto (req: Request, res: Response){
 
 export function pesquisarProdutoPorID (req: Request, res: Response){
     try {
-        const produto = productService.consultarProduto(req.query.id);
+        const produto = productService.consultarProduto(req.query.id, req.query.name);
         if(produto){
         res.status(200).json(
             {
