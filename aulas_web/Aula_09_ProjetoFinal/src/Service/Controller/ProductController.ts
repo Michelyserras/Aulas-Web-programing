@@ -3,7 +3,8 @@ import { ProductService} from "../ProductService";
 import express, { Request, Response } from "express";
 
 const  productService = new ProductService();
-
+ 
+//Modalidade
 export function CadastrarModalidade(req: Request, res: Response){
     try {
         const novaModalidade = productService.cadastrarModalidade(req.body);
@@ -40,6 +41,37 @@ export function listaModalidade(req: Request, res: Response){
     try {
         res.status(200).json(productService.getModalidades());
     } catch (error: any) {
-        res.status(400).json({ message: error.message});
+        res.status(404).json({ message: error.message});
     }
 };
+
+export function alterarModalidade(req: Request, res: Response){
+    try{
+        const modalidadeAtlz = productService.alterarModalidade(req.body);
+            res.status(201).json({
+                mensagem: "Modalidade alterada com sucesso!",
+                modalidade: modalidadeAtlz,
+            });
+
+    }catch (error: any){
+        res.status(400).json({message: error.message});
+    }
+
+}
+
+export function deletarModalidade(req: Request, res: Response){
+    try{
+        productService.excluirModalidade(req.query.id);
+            res.status(202).json({
+                mensagem: "Modalidade deletada com sucesso!",
+             }
+            )
+        }
+     catch (error: any){
+        res.status(400).json({message: error.message})
+    }
+}
+
+// Modalidade fim
+
+// Estoque

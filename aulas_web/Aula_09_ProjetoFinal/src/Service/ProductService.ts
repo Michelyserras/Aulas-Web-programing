@@ -5,6 +5,7 @@ import express, {Request, Response, response} from 'express';
 export class ProductService{
     productRepository: ProductRepository = new ProductRepository();
 
+    //Modalidade
     cadastrarModalidade(ModalidadeData: Modalidade): Modalidade | undefined{
         const {id, nome, vegano} = ModalidadeData;
 
@@ -17,29 +18,6 @@ export class ProductService{
     
     }
         
-        
-    /* 
-    ESSA PARTE FICA NO CONTROLLER
-    if(novaModalidade){
-            this.productRepository.cadastrarModalidade(novaModalidade);
-            res.status(200).json(
-                {
-                    Mensagem: "Modalidade criada com sucesso!",
-                    modalidade: novaModalidade,
-                }
-                    
-             );
-            return novaModalidade;
-        }
-        else 
-            res.status(400).json(
-                {
-                    Mensagem: "Erro ao criar nova modalidade!"
-                }
-            )
-        
-        }
-*/
     consultarModalidade(id: any){
         const idNumber: number = parseInt(id, 10);
         console.log(id);
@@ -49,6 +27,41 @@ export class ProductService{
     getModalidades(): Modalidade[]{
         return this.productRepository.exibeTodasModalidade();
     }
+
+    alterarModalidade(produto: any): Modalidade{
+     const {id, nome, vegano} = produto;
+        if(!id || !nome || !vegano){
+            throw new Error("Informações incompletas");
+        }
+
+       let novoP = this.consultarModalidade(id);
+
+       if(!novoP){
+        throw new Error(" Modalidade não cadastrada");
+       }
+
+       novoP.id = id;
+       novoP.nome = nome;
+       novoP.vegano = vegano;
+
+       this.productRepository.alterarModalidade(novoP);
+       return novoP;
+    }
+
+    excluirModalidade(ModalidadeData: any){
+        const produto = this.consultarModalidade(ModalidadeData);
+        if(produto){
+            return this.productRepository.deletaModalidade(produto);
+        }
+        else{
+            throw new Error("Modalidade não existe!");
+        }
+
+    }
+    // Modalidade Fim~
+
+    // Estoque 
+    // Estoque fim
     
 }
 

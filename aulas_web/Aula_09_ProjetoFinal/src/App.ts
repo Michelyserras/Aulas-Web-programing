@@ -1,4 +1,4 @@
-import { CadastrarModalidade,pesquisarModalidade, listaModalidade,  } from "./Service/Controller/ProductController";
+import { CadastrarModalidade,pesquisarModalidade, listaModalidade, deletarModalidade, alterarModalidade } from "./Service/Controller/ProductController";
 import express, {Request, Response} from "express";
 
 const app = express() ;
@@ -10,7 +10,19 @@ function logInfo () {
     console.log(` API em execucao no URL: http://localhost:3000`);
 }
 
-app.post ("/api/modalidade", CadastrarModalidade );
-app.get ("/api/modalidade", pesquisarModalidade);
-app.get ("/api/modalidade/todas", listaModalidade );
+//Modalidade
+
+app.post("/api/modalidade", CadastrarModalidade );
+app.get("/api/modalidade", pesquisarModalidade);
+app.get("/api/modalidade/todas", listaModalidade );
+app.put("/api/modalidade", alterarModalidade );
+app.delete("/api/modalidade", deletarModalidade);
+
+//Modalidade fim
+
+//Estoque 
+
+
+//Estoque fim
+
 app.listen(PORT,logInfo);

@@ -12,7 +12,13 @@ app.use(express_1.default.json());
 function logInfo() {
     console.log(` API em execucao no URL: http://localhost:3000`);
 }
+//Modalidade
 app.post("/api/modalidade", ProductController_1.CadastrarModalidade);
 app.get("/api/modalidade", ProductController_1.pesquisarModalidade);
 app.get("/api/modalidade/todas", ProductController_1.listaModalidade);
+app.put("/api/modalidade", ProductController_1.alterarModalidade);
+app.delete("/api/modalidade", ProductController_1.deletarModalidade);
+//Modalidade fim
+//Estoque 
+//Estoque fim
 app.listen(PORT, logInfo);
