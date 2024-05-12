@@ -114,5 +114,19 @@ export function ProcurarId(req: Request, res:Response){
     }catch (error:any){
         res.status(400).json({message: error.message})
     }
+
+}
+
+export function atualizaEstoque(req: Request, res: Response){
+    try{
+        const estoqueAtlz = productService.atualizarEstoque(req.body);
+            res.status(201).json({
+                mensagem: "Estoque atualizado com sucesso!",
+                modalidade: estoqueAtlz,
+            });
+
+    }catch (error: any){
+        res.status(400).json({message: error.message});
+    }
 }
 // Estoque fim

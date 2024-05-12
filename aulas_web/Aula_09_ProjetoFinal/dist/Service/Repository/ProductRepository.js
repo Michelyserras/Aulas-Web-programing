@@ -42,5 +42,12 @@ class ProductRepository {
     consultaEstoqueId(idNum) {
         return this.estoqueList.find(Estoque => Estoque.id === idNum);
     }
+    alterarEstoque(produto) {
+        const index = this.estoqueList.indexOf(produto);
+        if (index !== -1) {
+            this.estoqueList[index] = produto;
+        }
+        return index;
+    }
 }
 exports.ProductRepository = ProductRepository;

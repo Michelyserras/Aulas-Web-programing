@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcurarId = exports.ListaEstoque = exports.adicionarAoEstoque = exports.deletarModalidade = exports.alterarModalidade = exports.listaModalidade = exports.pesquisarModalidade = exports.CadastrarModalidade = void 0;
+exports.atualizaEstoque = exports.ProcurarId = exports.ListaEstoque = exports.adicionarAoEstoque = exports.deletarModalidade = exports.alterarModalidade = exports.listaModalidade = exports.pesquisarModalidade = exports.CadastrarModalidade = void 0;
 const ProductService_1 = require("../ProductService");
 const productService = new ProductService_1.ProductService();
 //Modalidade
@@ -112,4 +112,17 @@ function ProcurarId(req, res) {
     }
 }
 exports.ProcurarId = ProcurarId;
+function atualizaEstoque(req, res) {
+    try {
+        const estoqueAtlz = productService.atualizarEstoque(req.body);
+        res.status(201).json({
+            mensagem: "Estoque atualizado com sucesso!",
+            modalidade: estoqueAtlz,
+        });
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+exports.atualizaEstoque = atualizaEstoque;
 // Estoque fim

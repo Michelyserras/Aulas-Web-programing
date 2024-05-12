@@ -87,6 +87,27 @@ export class ProductService{
         return this.productRepository.consultaEstoqueId(numId);
     }
 
+    atualizarEstoque(estoqueData: any): EstoquePaes{
+        const {id, quantidade, precoVenda} = estoqueData;
+        
+        if(!id || !quantidade || !precoVenda){
+            throw new Error("Informações incompletas");
+        }
+
+       let novoP = this.ProcurarPorID(id);
+
+       if(!novoP){
+        throw new Error(" Estoque não cadastrado");
+       }
+
+       novoP.id = id;
+       novoP.quantidade = quantidade;
+       novoP.precoVenda = precoVenda;
+
+       this.productRepository.alterarEstoque(novoP);
+       return novoP;
+
+    }
     // Estoque fim
     
 }
