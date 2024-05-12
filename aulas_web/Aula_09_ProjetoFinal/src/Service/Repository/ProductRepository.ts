@@ -48,5 +48,9 @@ export class ProductRepository{
     listarEstoque(): EstoquePaes[]{
         return this.estoqueList;
     }
+
+    consultaEstoqueId(idNum: number): EstoquePaes | undefined{
+        return this.estoqueList.find(Estoque => Estoque.id === idNum);
+    }
     //Estoque fim
 }

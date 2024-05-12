@@ -22,5 +22,6 @@ app.delete("/api/modalidade", ProductController_1.deletarModalidade);
 //Estoque 
 app.post("/api/estoque", ProductController_1.adicionarAoEstoque);
 app.get("/api/estoque/todos", ProductController_1.ListaEstoque);
+app.get("/api/estoque", ProductController_1.ProcurarId);
 //Estoque fim
 app.listen(PORT, logInfo);

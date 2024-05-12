@@ -1,6 +1,6 @@
 import { 
     CadastrarModalidade,pesquisarModalidade, listaModalidade, deletarModalidade, alterarModalidade,
-    adicionarAoEstoque, ListaEstoque,
+    adicionarAoEstoque, ListaEstoque, ProcurarId
 
 } from "./Service/Controller/ProductController";
 import express, {Request, Response} from "express";
@@ -27,6 +27,7 @@ app.delete("/api/modalidade", deletarModalidade);
 //Estoque 
 app.post("/api/estoque", adicionarAoEstoque);
 app.get("/api/estoque/todos", ListaEstoque);
+app.get("/api/estoque", ProcurarId);
 
 //Estoque fim
 

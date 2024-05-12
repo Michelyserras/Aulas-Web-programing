@@ -39,5 +39,8 @@ class ProductRepository {
     listarEstoque() {
         return this.estoqueList;
     }
+    consultaEstoqueId(idNum) {
+        return this.estoqueList.find(Estoque => Estoque.id === idNum);
+    }
 }
 exports.ProductRepository = ProductRepository;

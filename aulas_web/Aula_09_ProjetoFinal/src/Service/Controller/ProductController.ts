@@ -99,4 +99,20 @@ export function ListaEstoque(req: Request, res:Response){
     }
 }
 
+export function ProcurarId(req: Request, res:Response){
+    try{
+        const id = productService.ProcurarPorID(req.query.id);
+        if(id){
+            res.status(200).json({
+                message: "Id encontrado com sucesso",
+                Estoque: id,
+
+            })
+        }
+
+
+    }catch (error:any){
+        res.status(400).json({message: error.message})
+    }
+}
 // Estoque fim

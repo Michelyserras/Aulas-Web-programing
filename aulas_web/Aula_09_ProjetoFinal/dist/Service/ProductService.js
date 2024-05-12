@@ -67,5 +67,10 @@ class ProductService {
     ListaTodoEstoque() {
         return this.productRepository.listarEstoque();
     }
+    ProcurarPorID(id) {
+        const numId = parseInt(id, 10);
+        console.log(numId);
+        return this.productRepository.consultaEstoqueId(numId);
+    }
 }
 exports.ProductService = ProductService;

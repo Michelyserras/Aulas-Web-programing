@@ -81,6 +81,12 @@ export class ProductService{
         return this.productRepository.listarEstoque();
     }
 
+    ProcurarPorID(id: any){
+        const numId: number = parseInt(id, 10);
+        console.log(numId);
+        return this.productRepository.consultaEstoqueId(numId);
+    }
+
     // Estoque fim
     
 }
