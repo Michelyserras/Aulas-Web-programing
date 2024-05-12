@@ -13,15 +13,18 @@ export class Modalidade{
 
 export class EstoquePaes{
     id: number;
-    modalidadeId:number;
+    modalidadeId: number;
     quantidade: number;
     precoVenda: number;
 
     constructor(id:number, modalidadeId:number, quantidade:number, precoVenda:number){
-        this.id = id;
+        this.id = this.gerarId();
         this.modalidadeId = modalidadeId;
         this.quantidade = quantidade;
         this.precoVenda = precoVenda
+    }
+    private gerarId(){
+        return Date.now();
     }
 }
 

@@ -1,4 +1,8 @@
-import { CadastrarModalidade,pesquisarModalidade, listaModalidade, deletarModalidade, alterarModalidade } from "./Service/Controller/ProductController";
+import { 
+    CadastrarModalidade,pesquisarModalidade, listaModalidade, deletarModalidade, alterarModalidade,
+    adicionarAoEstoque, ListaEstoque,
+
+} from "./Service/Controller/ProductController";
 import express, {Request, Response} from "express";
 
 const app = express() ;
@@ -21,7 +25,8 @@ app.delete("/api/modalidade", deletarModalidade);
 //Modalidade fim
 
 //Estoque 
-
+app.post("/api/estoque", adicionarAoEstoque);
+app.get("/api/estoque/todos", ListaEstoque);
 
 //Estoque fim
 

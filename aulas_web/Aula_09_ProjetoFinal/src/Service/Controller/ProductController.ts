@@ -75,3 +75,28 @@ export function deletarModalidade(req: Request, res: Response){
 // Modalidade fim
 
 // Estoque
+
+export function adicionarAoEstoque(req: Request, res: Response){
+    try{
+        const novoProduto = productService.adicionarEstoque(req.body);
+        res.status(201).json({
+            mensagem: "Estoque adicionado com sucesso!",
+            estoque: novoProduto,
+        })
+    } catch (error: any){
+        res.status(400).json({message: error.message});
+    }
+}
+
+export function ListaEstoque(req: Request, res:Response){
+    try{
+        res.status(200).json({
+            estoque: productService.ListaTodoEstoque(),
+        })
+    }
+    catch (error: any){
+        res.status(404).json({message: error.message})
+    }
+}
+
+// Estoque fim

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletarModalidade = exports.alterarModalidade = exports.listaModalidade = exports.pesquisarModalidade = exports.CadastrarModalidade = void 0;
+exports.ListaEstoque = exports.adicionarAoEstoque = exports.deletarModalidade = exports.alterarModalidade = exports.listaModalidade = exports.pesquisarModalidade = exports.CadastrarModalidade = void 0;
 const ProductService_1 = require("../ProductService");
 const productService = new ProductService_1.ProductService();
 //Modalidade
@@ -73,3 +73,28 @@ function deletarModalidade(req, res) {
 exports.deletarModalidade = deletarModalidade;
 // Modalidade fim
 // Estoque
+function adicionarAoEstoque(req, res) {
+    try {
+        const novoProduto = productService.adicionarEstoque(req.body);
+        res.status(201).json({
+            mensagem: "Estoque adicionado com sucesso!",
+            estoque: novoProduto,
+        });
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+exports.adicionarAoEstoque = adicionarAoEstoque;
+function ListaEstoque(req, res) {
+    try {
+        res.status(200).json({
+            estoque: productService.ListaTodoEstoque(),
+        });
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+exports.ListaEstoque = ListaEstoque;
+// Estoque fim

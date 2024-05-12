@@ -61,6 +61,26 @@ export class ProductService{
     // Modalidade Fim~
 
     // Estoque 
+
+    adicionarEstoque(Produtodata: EstoquePaes){
+        const {id, modalidadeId, quantidade, precoVenda} = Produtodata;
+
+        if(!modalidadeId || !quantidade || !precoVenda){
+            throw new Error("Informaações incompletas");
+        }
+        if(this.productRepository.filtrarPorId(modalidadeId)){
+            const novoProduto = new EstoquePaes(id, modalidadeId, quantidade, precoVenda);
+            this.productRepository.adicionarEstoque(novoProduto);
+            return novoProduto;
+        }
+        throw new Error("Modalidade informada não existe");   
+    }
+
+
+    ListaTodoEstoque():EstoquePaes[] {
+        return this.productRepository.listarEstoque();
+    }
+
     // Estoque fim
     
 }

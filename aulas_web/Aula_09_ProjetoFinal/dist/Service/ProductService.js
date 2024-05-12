@@ -6,8 +6,6 @@ const ProductRepository_1 = require("./Repository/ProductRepository");
 class ProductService {
     constructor() {
         this.productRepository = new ProductRepository_1.ProductRepository();
-        // Modalidade Fim~
-        // Estoque 
         // Estoque fim
     }
     //Modalidade
@@ -51,6 +49,23 @@ class ProductService {
         else {
             throw new Error("Modalidade não existe!");
         }
+    }
+    // Modalidade Fim~
+    // Estoque 
+    adicionarEstoque(Produtodata) {
+        const { id, modalidadeId, quantidade, precoVenda } = Produtodata;
+        if (!modalidadeId || !quantidade || !precoVenda) {
+            throw new Error("Informaações incompletas");
+        }
+        if (this.productRepository.filtrarPorId(modalidadeId)) {
+            const novoProduto = new Product_1.EstoquePaes(id, modalidadeId, quantidade, precoVenda);
+            this.productRepository.adicionarEstoque(novoProduto);
+            return novoProduto;
+        }
+        throw new Error("Modalidade informada não existe");
+    }
+    ListaTodoEstoque() {
+        return this.productRepository.listarEstoque();
     }
 }
 exports.ProductService = ProductService;

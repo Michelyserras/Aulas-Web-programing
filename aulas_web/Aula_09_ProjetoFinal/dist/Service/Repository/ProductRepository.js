@@ -7,6 +7,7 @@ class ProductRepository {
         this.modalidadeList = [];
         //Modalidade Fim
         // Estoque
+        this.estoqueList = [];
         //Estoque fim
     }
     cadastrarModalidade(product) {
@@ -31,6 +32,12 @@ class ProductRepository {
         if (index !== -1) {
             this.modalidadeList.splice(index, 1);
         }
+    }
+    adicionarEstoque(produto) {
+        this.estoqueList.push(produto);
+    }
+    listarEstoque() {
+        return this.estoqueList;
     }
 }
 exports.ProductRepository = ProductRepository;

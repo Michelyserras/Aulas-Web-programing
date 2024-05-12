@@ -11,10 +11,13 @@ class Modalidade {
 exports.Modalidade = Modalidade;
 class EstoquePaes {
     constructor(id, modalidadeId, quantidade, precoVenda) {
-        this.id = id;
+        this.id = this.gerarId();
         this.modalidadeId = modalidadeId;
         this.quantidade = quantidade;
         this.precoVenda = precoVenda;
+    }
+    gerarId() {
+        return Date.now();
     }
 }
 exports.EstoquePaes = EstoquePaes;

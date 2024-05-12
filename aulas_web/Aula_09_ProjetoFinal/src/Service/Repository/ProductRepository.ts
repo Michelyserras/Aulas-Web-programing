@@ -21,7 +21,7 @@ export class ProductRepository{
         const index = this.modalidadeList.indexOf(produto);
         if(index !== -1){
             this.modalidadeList[index] = produto;
-        }
+        }                       
         return index;
     }
 
@@ -38,5 +38,15 @@ export class ProductRepository{
     //Modalidade Fim
 
     // Estoque
+
+    estoqueList: EstoquePaes[] = [];
+
+    adicionarEstoque(produto: EstoquePaes){
+        this.estoqueList.push(produto);  
+    }
+
+    listarEstoque(): EstoquePaes[]{
+        return this.estoqueList;
+    }
     //Estoque fim
 }
