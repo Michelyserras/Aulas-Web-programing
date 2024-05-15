@@ -22,8 +22,8 @@ class EstoquePaes {
 }
 exports.EstoquePaes = EstoquePaes;
 class ItemVenda {
-    constructor(estoquePaesId, quantidade) {
-        this.estoquePaesId = estoquePaesId;
+    constructor(estoqueId, quantidade) {
+        this.estoqueId = estoqueId;
         this.quantidade = quantidade;
     }
 }

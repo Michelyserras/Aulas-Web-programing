@@ -108,7 +108,44 @@ export class ProductService{
        return novoP;
 
     }
+
+    deletarEstoque(estoqueData: any){
+        const estoque = this.ProcurarPorID(estoqueData);
+        if(estoque){
+            return this.productRepository.deletarEstoque(estoque);
+        }else{
+            throw new Error("Estoque informado não existe!");
+        }
+    }
     // Estoque fim
+
+    // vendas
+    cadastrarCompra(compraData: VendaPaes, produtos: ItemVenda){
+        let { cpfCliente, itensComprados, valorTotal} = compraData;
+
+
+        if(!cpfCliente || !itensComprados){
+            throw new Error("Informações incompletas");  
+        }
+        if(this.ProcurarPorID(produtos.estoqueId)){
+        
+        valorTotal = this.productRepository.soma();
+        itensComprados === this.productRepository.itensList;
+        const novaCompra = new VendaPaes( cpfCliente, valorTotal, itensComprados);
+        this.productRepository.realizarVenda(novaCompra);
+
+         
+        return novaCompra;
+           
+        }
+       throw new Error("Estoque insuficiente ou não existe!");
+
+        
+    
+
+
+    }
+    // vendas fim
     
 }
 

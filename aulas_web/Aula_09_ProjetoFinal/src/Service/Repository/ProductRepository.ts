@@ -61,5 +61,33 @@ export class ProductRepository{
         }                       
         return index;
     }
+
+    deletarEstoque(produto: EstoquePaes){
+        const index = this.estoqueList.indexOf(produto);
+        if(index !== -1){
+            this.estoqueList.splice(index, 1);
+        }
+    }
     //Estoque fim
+
+    // venda
+    vendasList: VendaPaes[] = [];
+    itensList: ItemVenda[] = []
+
+    realizarVenda(compra: VendaPaes){
+        this.vendasList.push(compra);
+    }
+
+    soma(): number {
+        let soma: number = 0;
+        for (let i = 0; i<= this.itensList.length; i++){
+            if(this.estoqueList[i].quantidade === 0){
+                throw new Error("Infelizmente o estoque está vazio!");
+            }
+            soma += this.itensList[i].quantidade * this.estoqueList[i].precoVenda;
+        }
+        return soma;
+
+    }
+    // venda fim
 }

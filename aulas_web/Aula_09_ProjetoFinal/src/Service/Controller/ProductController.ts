@@ -129,4 +129,31 @@ export function atualizaEstoque(req: Request, res: Response){
         res.status(400).json({message: error.message});
     }
 }
+
+export function deletarEstoque(req: Request, res:Response){
+    try{
+        productService.deletarEstoque(req.query.id);
+        res.status(200).json({
+                mensagem: "Estoque excluído com sucesso!",
+        })
+    } catch (error: any){
+        res.status(400).json({message: error.message});
+    }
+    
+}
 // Estoque fim
+
+// vendas 
+export function realizarVenda(req:Request, res:Response){
+    try{
+        const novaCompra = productService.cadastrarCompra(req.body, req.body);
+        res.status(200).json({
+            mensagem: "Venda realizada com sucesso!",
+            Venda: novaCompra
+        })
+        
+    } catch (error: any){
+        res.status(400).json({message: error.message});
+    }
+}
+// vendas fim

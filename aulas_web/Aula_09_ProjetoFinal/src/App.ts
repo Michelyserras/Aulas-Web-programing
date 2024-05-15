@@ -1,6 +1,7 @@
 import { 
     CadastrarModalidade,pesquisarModalidade, listaModalidade, deletarModalidade, alterarModalidade,
-    adicionarAoEstoque, ListaEstoque, ProcurarId, atualizaEstoque,
+    adicionarAoEstoque, ListaEstoque, ProcurarId, atualizaEstoque, deletarEstoque,
+    realizarVenda,
 
 } from "./Service/Controller/ProductController";
 import express, {Request, Response} from "express";
@@ -29,7 +30,11 @@ app.post("/api/estoque", adicionarAoEstoque);
 app.get("/api/estoque/todos", ListaEstoque);
 app.get("/api/estoque", ProcurarId);
 app.put("/api/estoque", atualizaEstoque);
+app.delete("/api/estoque", deletarEstoque)
 
 //Estoque fim
 
+//venda
+app.post("/api/venda", realizarVenda);
+//venda fim
 app.listen(PORT,logInfo);

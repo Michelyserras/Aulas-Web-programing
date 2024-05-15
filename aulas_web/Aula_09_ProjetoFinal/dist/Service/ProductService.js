@@ -6,7 +6,7 @@ const ProductRepository_1 = require("./Repository/ProductRepository");
 class ProductService {
     constructor() {
         this.productRepository = new ProductRepository_1.ProductRepository();
-        // Estoque fim
+        // vendas fim
     }
     //Modalidade
     cadastrarModalidade(ModalidadeData) {
@@ -86,6 +86,31 @@ class ProductService {
         novoP.precoVenda = precoVenda;
         this.productRepository.alterarEstoque(novoP);
         return novoP;
+    }
+    deletarEstoque(estoqueData) {
+        const estoque = this.ProcurarPorID(estoqueData);
+        if (estoque) {
+            return this.productRepository.deletarEstoque(estoque);
+        }
+        else {
+            throw new Error("Estoque informado não existe!");
+        }
+    }
+    // Estoque fim
+    // vendas
+    cadastrarCompra(compraData, produtos) {
+        let { cpfCliente, itensComprados, valorTotal } = compraData;
+        if (!cpfCliente || !itensComprados) {
+            throw new Error("Informações incompletas");
+        }
+        if (this.ProcurarPorID(produtos.estoqueId)) {
+            valorTotal = this.productRepository.soma();
+            itensComprados === this.productRepository.itensList;
+            const novaCompra = new Product_1.VendaPaes(cpfCliente, valorTotal, itensComprados);
+            this.productRepository.realizarVenda(novaCompra);
+            return novaCompra;
+        }
+        throw new Error("Estoque insuficiente ou não existe!");
     }
 }
 exports.ProductService = ProductService;

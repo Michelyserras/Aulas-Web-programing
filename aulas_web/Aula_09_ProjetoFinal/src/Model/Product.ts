@@ -29,11 +29,11 @@ export class EstoquePaes{
 }
 
 export class ItemVenda{
-    estoquePaesId:number;
+    estoqueId:number;
     quantidade: number;
 
-    constructor(estoquePaesId:number, quantidade:number){
-        this.estoquePaesId = estoquePaesId;
+    constructor(estoqueId:number, quantidade:number){
+        this.estoqueId = estoqueId;
         this.quantidade = quantidade;
     }
 }
@@ -41,8 +41,9 @@ export class ItemVenda{
 export class VendaPaes{
     id: number;
     cpfCliente: string;
-    valorTotal: number;
     itensComprados: Array<ItemVenda>;
+    valorTotal: number;
+   
 
     constructor(cpfCliente: string, valorTotal:number, itensComprados: Array<ItemVenda>){
         this.id = this.gerarId(); // como serão realizadas varias vezes é melhor que o id sejam numeros aleatorios
@@ -54,4 +55,6 @@ export class VendaPaes{
     private gerarId(): number{
         return Date.now();
     }
+
+   
 }

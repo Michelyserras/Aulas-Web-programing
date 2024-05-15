@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.atualizaEstoque = exports.ProcurarId = exports.ListaEstoque = exports.adicionarAoEstoque = exports.deletarModalidade = exports.alterarModalidade = exports.listaModalidade = exports.pesquisarModalidade = exports.CadastrarModalidade = void 0;
+exports.realizarVenda = exports.deletarEstoque = exports.atualizaEstoque = exports.ProcurarId = exports.ListaEstoque = exports.adicionarAoEstoque = exports.deletarModalidade = exports.alterarModalidade = exports.listaModalidade = exports.pesquisarModalidade = exports.CadastrarModalidade = void 0;
 const ProductService_1 = require("../ProductService");
 const productService = new ProductService_1.ProductService();
 //Modalidade
@@ -125,4 +125,31 @@ function atualizaEstoque(req, res) {
     }
 }
 exports.atualizaEstoque = atualizaEstoque;
+function deletarEstoque(req, res) {
+    try {
+        productService.deletarEstoque(req.query.id);
+        res.status(200).json({
+            mensagem: "Estoque excluído com sucesso!",
+        });
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+exports.deletarEstoque = deletarEstoque;
 // Estoque fim
+// vendas 
+function realizarVenda(req, res) {
+    try {
+        const novaCompra = productService.cadastrarCompra(req.body, req.body);
+        res.status(200).json({
+            mensagem: "Venda realizada com sucesso!",
+            Venda: novaCompra
+        });
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+exports.realizarVenda = realizarVenda;
+// vendas fim
