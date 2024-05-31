@@ -18,14 +18,12 @@ export class EstoquePaes{
     precoVenda: number;
 
     constructor(id:number, modalidadeId:number, quantidade:number, precoVenda:number){
-        this.id = this.gerarId();
+        this.id = id;
         this.modalidadeId = modalidadeId;
         this.quantidade = quantidade;
         this.precoVenda = precoVenda
     }
-    private gerarId(){
-        return Date.now();
-    }
+   
 }
 
 export class ItemVenda{
@@ -55,6 +53,10 @@ export class VendaPaes{
     private gerarId(): number{
         return Date.now();
     }
+
+    // private somaValor(quantidade: ItemVenda, precoVenda: EstoquePaes): number{
+    //     return quantidade.quantidade * precoVenda.precoVenda;
+    // }
 
    
 }

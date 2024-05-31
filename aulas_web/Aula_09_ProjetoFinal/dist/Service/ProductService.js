@@ -98,19 +98,19 @@ class ProductService {
     }
     // Estoque fim
     // vendas
-    cadastrarCompra(compraData, produtos) {
+    cadastrarCompra(compraData) {
         let { cpfCliente, itensComprados, valorTotal } = compraData;
         if (!cpfCliente || !itensComprados) {
             throw new Error("Informações incompletas");
         }
-        if (this.ProcurarPorID(produtos.estoqueId)) {
-            valorTotal = this.productRepository.soma();
-            itensComprados === this.productRepository.itensList;
+        itensComprados = this.productRepository.itensList;
+        if (this.ProcurarPorID(itensComprados)) {
+            valorTotal = this.productRepository.totalCompra();
             const novaCompra = new Product_1.VendaPaes(cpfCliente, valorTotal, itensComprados);
             this.productRepository.realizarVenda(novaCompra);
             return novaCompra;
         }
-        throw new Error("Estoque insuficiente ou não existe!");
+        throw new Error("Estoque insuficiente ou não existente!");
     }
 }
 exports.ProductService = ProductService;

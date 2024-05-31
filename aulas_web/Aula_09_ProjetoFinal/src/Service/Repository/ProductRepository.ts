@@ -1,3 +1,4 @@
+import { idText } from "typescript";
 import { Modalidade, EstoquePaes, ItemVenda, VendaPaes } from "../../Model/Product";
 
 export class ProductRepository{
@@ -78,16 +79,21 @@ export class ProductRepository{
         this.vendasList.push(compra);
     }
 
-    soma(): number {
-        let soma: number = 0;
-        for (let i = 0; i<= this.itensList.length; i++){
-            if(this.estoqueList[i].quantidade === 0){
-                throw new Error("Infelizmente o estoque está vazio!");
-            }
-            soma += this.itensList[i].quantidade * this.estoqueList[i].precoVenda;
-        }
-        return soma;
+    itensVenda(itens: ItemVenda){
+        this.itensList.push(itens);
+    }
 
+    totalCompra(): any{
+        let total = 0;
+        for(let i = 0; i <= this.itensList.length; i++){
+            const itens = this.itensList[i];
+            const estoque = this.consultaEstoqueId(itens.estoqueId);
+            if(estoque){
+                total += itens.quantidade * estoque.precoVenda; 
+            }
+            return total;
     }
     // venda fim
+    }
+
 }

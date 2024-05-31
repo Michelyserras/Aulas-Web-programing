@@ -12,7 +12,6 @@ class ProductRepository {
         // venda
         this.vendasList = [];
         this.itensList = [];
-        // venda fim
     }
     cadastrarModalidade(product) {
         this.modalidadeList.push(product);
@@ -62,15 +61,20 @@ class ProductRepository {
     realizarVenda(compra) {
         this.vendasList.push(compra);
     }
-    soma() {
-        let soma = 0;
+    itensVenda(itens) {
+        this.itensList.push(itens);
+    }
+    totalCompra() {
+        let total = 0;
         for (let i = 0; i <= this.itensList.length; i++) {
-            if (this.estoqueList[i].quantidade === 0) {
-                throw new Error("Infelizmente o estoque está vazio!");
+            const itens = this.itensList[i];
+            const estoque = this.consultaEstoqueId(itens.estoqueId);
+            if (estoque) {
+                total += itens.quantidade * estoque.precoVenda;
             }
-            soma += this.itensList[i].quantidade * this.estoqueList[i].precoVenda;
+            return total;
         }
-        return soma;
+        // venda fim
     }
 }
 exports.ProductRepository = ProductRepository;

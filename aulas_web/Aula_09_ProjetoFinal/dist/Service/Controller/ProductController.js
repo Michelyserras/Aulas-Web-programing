@@ -141,7 +141,7 @@ exports.deletarEstoque = deletarEstoque;
 // vendas 
 function realizarVenda(req, res) {
     try {
-        const novaCompra = productService.cadastrarCompra(req.body, req.body);
+        const novaCompra = productService.cadastrarCompra(req.body);
         res.status(200).json({
             mensagem: "Venda realizada com sucesso!",
             Venda: novaCompra
