@@ -28,5 +28,8 @@ class VendaPaes {
     gerarId() {
         return Date.now();
     }
+    valortotal(quantidade) {
+        const soma = 0;
+    }
 }
 exports.VendaPaes = VendaPaes;

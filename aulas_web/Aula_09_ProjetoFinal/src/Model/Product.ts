@@ -51,6 +51,11 @@ export class VendaPaes{
         return Date.now();
     }
 
+    valortotal(quantidade: number){
+        const soma = 0;
+        
+    }
+
     // private somaValor(quantidade: ItemVenda, precoVenda: EstoquePaes): number{
     //     return quantidade.quantidade * precoVenda.precoVenda;
     // }

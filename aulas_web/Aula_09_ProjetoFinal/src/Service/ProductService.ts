@@ -121,14 +121,13 @@ export class ProductService{
 
     // vendas
     cadastrarCompra(compraData: VendaPaes){
-        let { cpfCliente, itensComprados, valorTotal} = compraData;
+        const { cpfCliente, itensComprados, valorTotal} = compraData;
 
         if(!cpfCliente || !itensComprados){
             throw new Error("Informações incompletas");
         }
 
-        if(this.ProcurarPorID(itensComprados)){
-            this.productRepository.totalCompra();
+        if(this.ProcurarPorID(itensComprados.estoqueId)){
             const novaCompra = new VendaPaes(cpfCliente, valorTotal, itensComprados);
             this.productRepository.realizarVenda(novaCompra);
             return novaCompra;
