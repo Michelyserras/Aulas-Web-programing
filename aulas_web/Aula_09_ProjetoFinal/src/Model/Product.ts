@@ -1,3 +1,4 @@
+import { ListFormat } from "typescript";
 
 export class Modalidade{
     id: number;
@@ -26,28 +27,24 @@ export class EstoquePaes{
    
 }
 
-export class ItemVenda{
+export interface ItemVenda{
     estoqueId:number;
     quantidade: number;
-
-    constructor(estoqueId:number, quantidade:number){
-        this.estoqueId = estoqueId;
-        this.quantidade = quantidade;
-    }
 }
+
 
 export class VendaPaes{
     id: number;
     cpfCliente: string;
-    itensComprados: Array<ItemVenda>;
+    itensComprados: ItemVenda;
     valorTotal: number;
    
 
-    constructor(cpfCliente: string, valorTotal:number, itensComprados: Array<ItemVenda>){
+    constructor(cpfCliente: string, valorTotal:number, itensComprados: ItemVenda){
         this.id = this.gerarId(); // como serão realizadas varias vezes é melhor que o id sejam numeros aleatorios
         this.cpfCliente = cpfCliente;
         this.valorTotal = valorTotal;
-        this.itensComprados = itensComprados
+        this.itensComprados = itensComprados;
     }
 
     private gerarId(): number{

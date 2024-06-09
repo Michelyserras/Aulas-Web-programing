@@ -61,9 +61,6 @@ class ProductRepository {
     realizarVenda(compra) {
         this.vendasList.push(compra);
     }
-    itensVenda(itens) {
-        this.itensList.push(itens);
-    }
     totalCompra() {
         let total = 0;
         for (let i = 0; i <= this.itensList.length; i++) {

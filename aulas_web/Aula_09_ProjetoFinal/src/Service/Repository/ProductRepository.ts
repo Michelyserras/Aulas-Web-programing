@@ -73,15 +73,12 @@ export class ProductRepository{
 
     // venda
     vendasList: VendaPaes[] = [];
-    itensList: ItemVenda[] = []
+    itensList: ItemVenda[] = [];
 
     realizarVenda(compra: VendaPaes){
         this.vendasList.push(compra);
     }
 
-    itensVenda(itens: ItemVenda){
-        this.itensList.push(itens);
-    }
 
     totalCompra(): any{
         let total = 0;

@@ -103,9 +103,8 @@ class ProductService {
         if (!cpfCliente || !itensComprados) {
             throw new Error("Informações incompletas");
         }
-        itensComprados = this.productRepository.itensList;
         if (this.ProcurarPorID(itensComprados)) {
-            valorTotal = this.productRepository.totalCompra();
+            this.productRepository.totalCompra();
             const novaCompra = new Product_1.VendaPaes(cpfCliente, valorTotal, itensComprados);
             this.productRepository.realizarVenda(novaCompra);
             return novaCompra;
