@@ -110,5 +110,10 @@ class ProductService {
         }
         throw new Error("Estoque insuficiente ou não existente!");
     }
+    ProcurarVendaPorID(id) {
+        const numId = parseInt(id, 10);
+        console.log(numId);
+        return this.productRepository.filtrarVendaPorId(numId);
+    }
 }
 exports.ProductService = ProductService;

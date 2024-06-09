@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.realizarVenda = exports.deletarEstoque = exports.atualizaEstoque = exports.ProcurarId = exports.ListaEstoque = exports.adicionarAoEstoque = exports.deletarModalidade = exports.alterarModalidade = exports.listaModalidade = exports.pesquisarModalidade = exports.CadastrarModalidade = void 0;
+exports.pesquisarVenda = exports.realizarVenda = exports.deletarEstoque = exports.atualizaEstoque = exports.ProcurarId = exports.ListaEstoque = exports.adicionarAoEstoque = exports.deletarModalidade = exports.alterarModalidade = exports.listaModalidade = exports.pesquisarModalidade = exports.CadastrarModalidade = void 0;
 const ProductService_1 = require("../ProductService");
 const productService = new ProductService_1.ProductService();
 //Modalidade
@@ -152,4 +152,23 @@ function realizarVenda(req, res) {
     }
 }
 exports.realizarVenda = realizarVenda;
+function pesquisarVenda(req, res) {
+    try {
+        const id = productService.ProcurarVendaPorID(req.query.id);
+        if (id) {
+            res.status(200).json({
+                mensagem: "Modalidade encontrada com sucesso!",
+                modalidade: id,
+            });
+        }
+        else {
+            res.status(404).json({ mensagem: "Modalidade não encontrado." });
+        }
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+exports.pesquisarVenda = pesquisarVenda;
+;
 // vendas fim

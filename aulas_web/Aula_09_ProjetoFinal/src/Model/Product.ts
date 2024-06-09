@@ -1,5 +1,6 @@
 import { ListFormat } from "typescript";
 
+
 export class Modalidade{
     id: number;
     nome:string;
@@ -24,7 +25,7 @@ export class EstoquePaes{
         this.quantidade = quantidade;
         this.precoVenda = precoVenda
     }
-   
+
 }
 
 export interface ItemVenda{
@@ -36,7 +37,7 @@ export interface ItemVenda{
 export class VendaPaes{
     id: number;
     cpfCliente: string;
-    itensComprados: ItemVenda;
+    itensComprados:  ItemVenda;
     valorTotal: number;
    
 
@@ -51,14 +52,5 @@ export class VendaPaes{
         return Date.now();
     }
 
-    valortotal(quantidade: number){
-        const soma = 0;
-        
-    }
 
-    // private somaValor(quantidade: ItemVenda, precoVenda: EstoquePaes): number{
-    //     return quantidade.quantidade * precoVenda.precoVenda;
-    // }
-
-   
 }

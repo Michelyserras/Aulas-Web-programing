@@ -73,24 +73,30 @@ export class ProductRepository{
 
     // venda
     vendasList: VendaPaes[] = [];
-    itensList: ItemVenda[] = [];
 
     realizarVenda(compra: VendaPaes){
         this.vendasList.push(compra);
     }
 
+    pegarPreco(id:number){
+        const item = this.estoqueList.find(item => item.id === id);
+        return item ? item.precoVenda : undefined;
+    }
 
-    totalCompra(): any{
-        let total = 0;
-        for(let i = 0; i <= this.itensList.length; i++){
-            const itens = this.itensList[i];
-            const estoque = this.consultaEstoqueId(itens.estoqueId);
-            if(estoque){
-                total += itens.quantidade * estoque.precoVenda; 
+    calcularTotal(itensComprados: ItemVenda[]){
+        let soma = 0;
+        for(const item of itensComprados){
+            const preco = this.pegarPreco(item.estoqueId)
+            if(preco !== undefined){
+                soma += (preco * item.quantidade)
             }
-            return total;
+        }
+        return soma;
+
+    }
+
+    filtrarVendaPorId(id: number): VendaPaes| undefined{
+        return this.vendasList.find(VendaPaes => VendaPaes.id === id);
     }
     // venda fim
-    }
-
 }

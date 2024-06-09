@@ -128,12 +128,20 @@ export class ProductService{
         }
 
         if(this.ProcurarPorID(itensComprados.estoqueId)){
+
             const novaCompra = new VendaPaes(cpfCliente, valorTotal, itensComprados);
             this.productRepository.realizarVenda(novaCompra);
             return novaCompra;
+
         }
         throw new Error("Estoque insuficiente ou não existente!");
        }
+
+       ProcurarVendaPorID(id: any){
+        const numId: number = parseInt(id, 10);
+        console.log(numId);
+        return this.productRepository.filtrarVendaPorId(numId);
+    }
     // vendas fim
     
 }

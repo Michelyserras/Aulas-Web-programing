@@ -11,7 +11,7 @@ class ProductRepository {
         //Estoque fim
         // venda
         this.vendasList = [];
-        this.itensList = [];
+        // venda fim
     }
     cadastrarModalidade(product) {
         this.modalidadeList.push(product);
@@ -61,17 +61,22 @@ class ProductRepository {
     realizarVenda(compra) {
         this.vendasList.push(compra);
     }
-    totalCompra() {
-        let total = 0;
-        for (let i = 0; i <= this.itensList.length; i++) {
-            const itens = this.itensList[i];
-            const estoque = this.consultaEstoqueId(itens.estoqueId);
-            if (estoque) {
-                total += itens.quantidade * estoque.precoVenda;
+    pegarPreco(id) {
+        const item = this.estoqueList.find(item => item.id === id);
+        return item ? item.precoVenda : undefined;
+    }
+    calcularTotal(itensComprados) {
+        let soma = 0;
+        for (const item of itensComprados) {
+            const preco = this.pegarPreco(item.estoqueId);
+            if (preco !== undefined) {
+                soma += (preco * item.quantidade);
             }
-            return total;
         }
-        // venda fim
+        return soma;
+    }
+    filtrarVendaPorId(id) {
+        return this.vendasList.find(VendaPaes => VendaPaes.id === id);
     }
 }
 exports.ProductRepository = ProductRepository;
