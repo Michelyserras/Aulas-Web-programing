@@ -157,6 +157,8 @@ export function realizarVenda(req:Request, res:Response){
     }
 }
 
+
+
 export function pesquisarVenda (req: Request, res: Response){
     try {
         const id = productService.ProcurarVendaPorID(req.query.id);
@@ -176,3 +178,6 @@ export function pesquisarVenda (req: Request, res: Response){
 };
 
 // vendas fim
+//service é a regra de negócioo
+//repository parte de tratamento com o banco de dados
+// model é a representação da entidade
