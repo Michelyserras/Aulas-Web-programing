@@ -1,5 +1,5 @@
 import { idText } from "typescript";
-import { Modalidade, EstoquePaes, ItemVenda, VendaPaes } from "../../Model/Product";
+import { Modalidade, EstoquePaes, ItemVenda, VendaPaes } from "../Model/Product";
 
 export class ProductRepository{
    // Modalidade

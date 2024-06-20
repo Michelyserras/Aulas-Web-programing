@@ -1,7 +1,7 @@
 import { 
     CadastrarModalidade,pesquisarModalidade, listaModalidade, deletarModalidade, alterarModalidade,
     adicionarAoEstoque, ListaEstoque, ProcurarId, atualizaEstoque, deletarEstoque,
-    realizarVenda,pesquisarVenda, } from "./Service/Controller/ProductController";
+    realizarVenda,pesquisarVenda, } from "./Controller/ProductController";
 
 import express, {Request, Response} from "express";
 

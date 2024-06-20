@@ -1,5 +1,5 @@
 import { Modalidade, EstoquePaes, ItemVenda, VendaPaes } from "../Model/Product";
-import { ProductRepository } from "./Repository/ProductRepository";
+import { ProductRepository } from "../Repository/ProductRepository";
 import express, {Request, Response, response} from 'express';
 
 export class ProductService{

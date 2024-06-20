@@ -1,5 +1,5 @@
-import { Modalidade, EstoquePaes, ItemVenda, VendaPaes } from "../../Model/Product"; 
-import { ProductService} from "../ProductService";
+import { Modalidade, EstoquePaes, ItemVenda, VendaPaes } from "../Model/Product"; 
+import { ProductService} from "../Service/ProductService";
 import express, { Request, Response } from "express";
 
 const  productService = new ProductService();
@@ -178,6 +178,7 @@ export function pesquisarVenda (req: Request, res: Response){
 };
 
 // vendas fim
+// controler conversa direto com o service
 //service é a regra de negócioo
 //repository parte de tratamento com o banco de dados
 // model é a representação da entidade
