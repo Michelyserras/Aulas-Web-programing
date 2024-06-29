@@ -1,8 +1,6 @@
-import { 
-    CadastrarModalidade,pesquisarModalidade, listaModalidade, deletarModalidade, alterarModalidade,
-    adicionarAoEstoque, ListaEstoque, ProcurarId, atualizaEstoque, deletarEstoque,
-    realizarVenda,pesquisarVenda, } from "./Controller/ProductController";
-
+import { adicionarAoEstoque, ListaEstoque, ProcurarId, atualizaEstoque, deletarEstoque} from "./Controller/EstoqueController";
+import {CadastrarModalidade,pesquisarModalidade, listaModalidade, deletarModalidade, alterarModalidade} from "./Controller/ModalidadeController"
+import { realizarVenda, pesquisarVenda } from "./Controller/VendaController";
 import express, {Request, Response} from "express";
 
 const app = express() ;
