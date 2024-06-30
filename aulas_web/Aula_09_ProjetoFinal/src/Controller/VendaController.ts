@@ -1,14 +1,14 @@
 import { VendaPaes } from "../Model/vendaPaes";
-import { ProductService} from "../Service/ProductService";
+import { VendaService} from "../Service/VendaService";
 import express, { Request, Response } from "express";
 
-
+const vendaService = new VendaService();
 
 
 // vendas 
 export function realizarVenda(req:Request, res:Response){
     try{
-        const novaCompra = productService.cadastrarCompra(req.body);
+        const novaCompra = vendaService.cadastrarCompra(req.body);
         res.status(200).json({
             mensagem: "Venda realizada com sucesso!",
             Venda: novaCompra
@@ -19,9 +19,9 @@ export function realizarVenda(req:Request, res:Response){
     }
 }
 
-export function pesquisarVenda (req: Request, res: Response){
+/*export function pesquisarVenda (req: Request, res: Response){
     try {
-        const id = productService.ProcurarVendaPorID(req.query.id);
+        const id = vendaService.ProcurarVendaPorID(req.query.id);
         if(id){
         res.status(200).json(
             {
@@ -42,3 +42,4 @@ export function pesquisarVenda (req: Request, res: Response){
 //service é a regra de negócioo
 //repository parte de tratamento com o banco de dados
 // model é a representação da entidade
+*/

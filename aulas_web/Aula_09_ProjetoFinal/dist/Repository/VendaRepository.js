@@ -10,5 +10,8 @@ class VendaRepository {
     realizarVenda(compra) {
         this.vendasList.push(compra);
     }
+    getVendas() {
+        return this.vendasList;
+    }
 }
 exports.VendaRepository = VendaRepository;

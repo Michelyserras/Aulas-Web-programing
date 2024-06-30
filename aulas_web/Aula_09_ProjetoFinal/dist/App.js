@@ -30,6 +30,6 @@ app.delete("/api/estoque", EstoqueController_1.deletarEstoque);
 //Estoque fim
 //venda
 app.post("/api/venda", VendaController_1.realizarVenda);
-app.get("/api/vendas", VendaController_1.pesquisarVenda);
-//venda fim
+/*app.get("/api/vendas", pesquisarVenda);
+//venda fim/*/
 app.listen(PORT, logInfo);

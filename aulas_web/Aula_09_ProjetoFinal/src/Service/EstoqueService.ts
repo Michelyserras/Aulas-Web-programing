@@ -1,6 +1,8 @@
 import { ModalidadeRepository} from "../Repository/ModalidadeRepository";
 import { EstoquePaes } from "../Model/estoque";
 import { EstoqueRepository } from "../Repository/EstoqueRepository";
+
+
  
 
 export class EstoqueService{
@@ -9,23 +11,17 @@ export class EstoqueService{
 
     // Estoque 
 
-    adicionarEstoque(Produtodata: EstoquePaes){
-        const { modalidadeId, quantidade, precoVenda} = Produtodata;
+  adicionarEstoque(produtoData: EstoquePaes): EstoquePaes | undefined{
+   const {modalidadeId, quantidade, precoVenda} = produtoData;
 
-        if(!modalidadeId || !quantidade || !precoVenda){
-            throw new Error("Informações incompletas");
-        }
-        const modalidade = this.modalidadeRepository.filtrarPorId(modalidadeId);
-        
-        if(modalidade){
-
-            const novoProduto = new EstoquePaes( modalidadeId, quantidade, precoVenda);
-            this.estoqueRepository.adicionarEstoque(novoProduto);
-
-            return novoProduto;
-        }
-        throw new Error("Modalidade informada não existe");   
-    }
+   if(!modalidadeId || !quantidade || !precoVenda){
+        throw new Error("Informações incompletas");
+   }
+    const novoEstoque = new EstoquePaes(modalidadeId, quantidade, precoVenda);
+    this.estoqueRepository.adicionarEstoque(novoEstoque);
+    return novoEstoque;
+    
+  }
 
 
     ListaTodoEstoque():EstoquePaes[] {

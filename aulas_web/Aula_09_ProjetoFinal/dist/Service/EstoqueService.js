@@ -10,18 +10,14 @@ class EstoqueService {
         this.modalidadeRepository = new ModalidadeRepository_1.ModalidadeRepository();
     }
     // Estoque 
-    adicionarEstoque(Produtodata) {
-        const { modalidadeId, quantidade, precoVenda } = Produtodata;
+    adicionarEstoque(produtoData) {
+        const { modalidadeId, quantidade, precoVenda } = produtoData;
         if (!modalidadeId || !quantidade || !precoVenda) {
             throw new Error("Informações incompletas");
         }
-        const modalidade = this.modalidadeRepository.filtrarPorId(modalidadeId);
-        if (modalidade) {
-            const novoProduto = new estoque_1.EstoquePaes(modalidadeId, quantidade, precoVenda);
-            this.estoqueRepository.adicionarEstoque(novoProduto);
-            return novoProduto;
-        }
-        throw new Error("Modalidade informada não existe");
+        const novoEstoque = new estoque_1.EstoquePaes(modalidadeId, quantidade, precoVenda);
+        this.estoqueRepository.adicionarEstoque(novoEstoque);
+        return novoEstoque;
     }
     ListaTodoEstoque() {
         return this.estoqueRepository.listarEstoque();

@@ -13,10 +13,10 @@ const modalidadeService = new ModalidadeService();
 export function adicionarAoEstoque(req: Request, res: Response){
     try{
         const novoProduto = estoqueService.adicionarEstoque(req.body);
-            res.status(201).json({
+        res.status(201).json({
                 mensagem: "Estoque adicionado com sucesso!",
                 estoque: novoProduto,
-            })   
+        })   
     }
      catch (error: any){
         res.status(400).json({message: error.message});

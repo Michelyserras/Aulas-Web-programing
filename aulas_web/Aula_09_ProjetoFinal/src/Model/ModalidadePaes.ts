@@ -13,6 +13,6 @@ export class Modalidade{
     }
    
     private gerarId(){
-        return ++this.id;
+        return Math.floor(Math.random() * 10000);
     }
 }

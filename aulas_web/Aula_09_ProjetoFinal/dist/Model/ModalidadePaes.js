@@ -9,7 +9,7 @@ class Modalidade {
         this.vegano = vegano;
     }
     gerarId() {
-        return ++this.id;
+        return Math.floor(Math.random() * 10000);
     }
 }
 exports.Modalidade = Modalidade;

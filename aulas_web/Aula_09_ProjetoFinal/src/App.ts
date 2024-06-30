@@ -1,6 +1,6 @@
 import { adicionarAoEstoque, ListaEstoque, ProcurarId, atualizaEstoque, deletarEstoque} from "./Controller/EstoqueController";
 import {CadastrarModalidade,pesquisarModalidade, listaModalidade, deletarModalidade, alterarModalidade} from "./Controller/ModalidadeController"
-import { realizarVenda, pesquisarVenda } from "./Controller/VendaController";
+import { realizarVenda } from "./Controller/VendaController";
 import express, {Request, Response} from "express";
 
 const app = express() ;
@@ -33,6 +33,6 @@ app.delete("/api/estoque", deletarEstoque)
 
 //venda
 app.post("/api/venda", realizarVenda);
-app.get("/api/vendas", pesquisarVenda);
-//venda fim
+/*app.get("/api/vendas", pesquisarVenda);
+//venda fim/*/
 app.listen(PORT,logInfo);
