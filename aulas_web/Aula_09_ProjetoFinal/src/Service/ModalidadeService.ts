@@ -24,7 +24,12 @@ export class ModalidadeService{
     }
 
     getModalidades(): Modalidade[]{
-        return this.modalidadeRepository.exibeTodasModalidade();
+        if(this.modalidadeRepository.modalidadeList.length > 0){
+            return this.modalidadeRepository.exibeTodasModalidade();
+        }
+        else{
+            throw new Error("Não há nenhuma modalidade cadastrada");
+        }
     }
 
     alterarModalidade(produto: any): Modalidade{

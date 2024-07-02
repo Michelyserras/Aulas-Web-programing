@@ -61,5 +61,20 @@ class EstoqueService {
             throw new Error("Estoque informado não existe!");
         }
     }
+    retirarEstoque(estoqueData) {
+        const { id, quantidade, precoVenda } = estoqueData;
+        if (!id || !quantidade || !precoVenda) {
+            throw new Error("Informações incompletas");
+        }
+        let novoP = this.ProcurarPorID(id);
+        if (!novoP) {
+            throw new Error(" Estoque não cadastrado");
+        }
+        novoP.id = id;
+        novoP.quantidade -= quantidade;
+        novoP.precoVenda = precoVenda;
+        this.estoqueRepository.alterarEstoque(novoP);
+        return novoP;
+    }
 }
 exports.EstoqueService = EstoqueService;

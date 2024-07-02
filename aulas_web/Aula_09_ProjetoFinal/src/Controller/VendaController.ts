@@ -1,14 +1,17 @@
 import { VendaPaes } from "../Model/vendaPaes";
+import { EstoqueService } from "../Service/EstoqueService";
 import { VendaService} from "../Service/VendaService";
 import express, { Request, Response } from "express";
 
 const vendaService = new VendaService();
+const estoqueService = new EstoqueService();
 
 
 // vendas 
 export function realizarVenda(req:Request, res:Response){
     try{
         const novaCompra = vendaService.cadastrarCompra(req.body);
+    
         res.status(200).json({
             mensagem: "Venda realizada com sucesso!",
             Venda: novaCompra

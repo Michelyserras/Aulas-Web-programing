@@ -17,35 +17,80 @@ export class VendaService {
     // vendas
     cadastrarCompra(compraData: VendaPaes){
         const { cpfCliente, itensComprados} = compraData;
-    
+        let total = 0;
+
         if(!cpfCliente || !itensComprados){
             throw new Error("Informações incompletas");
         }
 
-        this.itensRepository.itensList.forEach(produto => {
-            const itens = this.itensRepository.itensList;
-            const estoqueExiste = this.estoqueRepository.consultaEstoqueId(produto.estoqueId);
-            console.log("Estoque existe", estoqueExiste);
-            let total = 0;
-        
-            if(estoqueExiste){
+        for(let i = 0; i<= itensComprados.length; i++){ // somando valor total
 
-                if(produto.quantidade > estoqueExiste.quantidade){ // verificando se há estoque suficiente para realizar a venda
-                    throw new Error("Estoque do produto é insuficiente para realizar a venda!" + estoqueExiste);
+            const estoque = this.estoqueRepository.consultaEstoqueId(itensComprados[i].estoqueId);
 
-                } else if(produto.quantidade < estoqueExiste.quantidade){ // caso haja, vamos adicionar os produtos a lista de itens;
-                    const itens = this.itensRepository.adicionarItens(produto);
-                    console.log("Adicionando itens a compra", itens);
+            if(estoque){
+                if(estoque.quantidade < itensComprados[i].quantidade){
+                    throw new Error("Estoque insuficiente...");
                 }
-                for(let i = 0; i<= itens.length; i++){ // somando valor total
-                    total = produto.quantidade * estoqueExiste.precoVenda;
-                }
+                else{
+                    console.log("estoque atual", estoque);
+                    total += itensComprados[i].quantidade * estoque.precoVenda;
+                    console.log("somando valores", total);
                 
-            }
+                    const produtos = itensComprados;
 
-        });
-       
+                    const novaCompra = new VendaPaes(cpfCliente, total, produtos);
+                    this.vendaRepository.realizarVenda(novaCompra);
+                    console.log("Compra realizada com sucesso!", novaCompra); 
+                    
+                    estoque.quantidade -= itensComprados[i].quantidade;
+                    console.log("estoque depois da compra", estoque);
+                    return novaCompra;
+                    
+                }
+            }
+            else{
+                throw new Error("Produto não existe!");
+            }
+        } 
+          
+         throw new Error("Erro ao realizar compra...")               
     }
+
+
+    //     this.vendaRepository.vendasList.forEach(itensComprados => {
+    //         this.itensRepository.itensList.forEach(produto => {
+    //             const itens = new ItemVenda(produto.estoqueId, produto.quantidade);
+    //             const estoqueExiste = this.estoqueRepository.consultaEstoqueId(produto.estoqueId); // constante que vai verificar se o estoque existe
+    //             console.log("Estoque existe", estoqueExiste);
+                
+    
+            
+    //             if(estoqueExiste){
+    
+    //                 if(produto.quantidade > estoqueExiste.quantidade){ // verificando se há estoque suficiente para realizar a venda
+    //                     throw new Error("Estoque do produto é insuficiente para realizar a venda!" + estoqueExiste);
+    
+    //                 } 
+    //                 else if(produto.quantidade < estoqueExiste.quantidade){// caso haja, vamos adicionar os produtos a lista de itens;
+    //                      // adicionando produtos na lista
+    //                     console.log("Adicionando itens a compra", itens);
+    
+    //                 }
+    //                 this.itensRepository.adicionarItens(itens);
+    
+    //             } 
+            
+                
+    
+    //         });
+
+    //     }
+       
+    //     const produtos = this.itensRepository.itensList;
+        
+    //    
+       
+    // }
       
     // // verificando se estoque existe e somando o mesmo;
     //     for (const item of itensComprados){
@@ -71,10 +116,4 @@ export class VendaService {
 
     //     return novaCompra;
     // 
-   
-}
-
-    
-
-
-
+    }

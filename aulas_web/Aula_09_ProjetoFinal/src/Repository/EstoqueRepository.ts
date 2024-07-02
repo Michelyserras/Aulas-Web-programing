@@ -21,6 +21,7 @@ export class EstoqueRepository{
         return this.estoqueList.find(Estoque => Estoque.modalidadeId === idNum);
     }
 
+  
 
     
     alterarEstoque(produto: EstoquePaes): number{
@@ -37,5 +38,6 @@ export class EstoqueRepository{
             this.estoqueList.splice(index, 1);
         }
     }
+
     //Estoque fim
 }

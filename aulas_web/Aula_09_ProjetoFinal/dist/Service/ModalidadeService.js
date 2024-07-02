@@ -24,7 +24,12 @@ class ModalidadeService {
         return this.modalidadeRepository.filtrarPorId(idNumber);
     }
     getModalidades() {
-        return this.modalidadeRepository.exibeTodasModalidade();
+        if (this.modalidadeRepository.modalidadeList.length > 0) {
+            return this.modalidadeRepository.exibeTodasModalidade();
+        }
+        else {
+            throw new Error("Não há nenhuma modalidade cadastrada");
+        }
     }
     alterarModalidade(produto) {
         const { id, nome, vegano } = produto;

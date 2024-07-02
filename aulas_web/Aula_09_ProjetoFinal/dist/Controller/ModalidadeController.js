@@ -1,10 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CadastrarModalidade = CadastrarModalidade;
-exports.pesquisarModalidade = pesquisarModalidade;
-exports.listaModalidade = listaModalidade;
-exports.alterarModalidade = alterarModalidade;
-exports.deletarModalidade = deletarModalidade;
+exports.deletarModalidade = exports.alterarModalidade = exports.listaModalidade = exports.pesquisarModalidade = exports.CadastrarModalidade = void 0;
 const ModalidadeService_1 = require("../Service/ModalidadeService");
 const modalidadeService = new ModalidadeService_1.ModalidadeService();
 //Modalidade
@@ -20,6 +16,7 @@ function CadastrarModalidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
+exports.CadastrarModalidade = CadastrarModalidade;
 function pesquisarModalidade(req, res) {
     try {
         const id = modalidadeService.consultarModalidade(req.query.id);
@@ -37,6 +34,7 @@ function pesquisarModalidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
+exports.pesquisarModalidade = pesquisarModalidade;
 ;
 function listaModalidade(req, res) {
     try {
@@ -46,6 +44,7 @@ function listaModalidade(req, res) {
         res.status(404).json({ message: error.message });
     }
 }
+exports.listaModalidade = listaModalidade;
 ;
 function alterarModalidade(req, res) {
     try {
@@ -59,6 +58,7 @@ function alterarModalidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
+exports.alterarModalidade = alterarModalidade;
 function deletarModalidade(req, res) {
     try {
         modalidadeService.excluirModalidade(req.query.id);
@@ -70,4 +70,5 @@ function deletarModalidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
+exports.deletarModalidade = deletarModalidade;
 // Modalidade fim
