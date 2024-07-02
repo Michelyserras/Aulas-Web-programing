@@ -8,5 +8,6 @@ export class itensRepository{
     adicionarItens(itens: ItemVenda){
         return this.itensList.push(itens);
     }
-    
+
+  
 }

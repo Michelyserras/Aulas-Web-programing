@@ -14,6 +14,15 @@ class ModalidadeRepository {
     filtrarPorId(id) {
         return this.modalidadeList.find(Modalidade => Modalidade.id === id);
     }
+    filtrarPorNome(id) {
+        const modalidade = this.filtrarPorId(id);
+        if (modalidade) {
+            return modalidade.nome;
+        }
+        else {
+            return undefined;
+        }
+    }
     exibeTodasModalidade() {
         return this.modalidadeList;
     }

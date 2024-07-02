@@ -1,18 +1,17 @@
-import { ItemVenda } from "../Model/itemVenda";
+
 import { VendaPaes } from "../Model/vendaPaes";
 import { EstoqueRepository } from "../Repository/EstoqueRepository";
 import { VendaRepository } from "../Repository/VendaRepository";
-import { itensRepository } from "../Repository/itensRepository";
-import { EstoqueService } from "./EstoqueService";
+import { ModalidadeRepository } from "../Repository/ModalidadeRepository";
 
  
 
 export class VendaService {
     vendaRepository: VendaRepository= new VendaRepository();
     estoqueRepository: EstoqueRepository = new EstoqueRepository();
-    estoqueService: EstoqueService = new EstoqueService();
+    modalidadeRepository: ModalidadeRepository = new ModalidadeRepository()
 
-    itensRepository: itensRepository = new itensRepository();
+    
 
     // vendas
     cadastrarCompra(compraData: VendaPaes){
@@ -23,37 +22,40 @@ export class VendaService {
             throw new Error("Informações incompletas");
         }
 
-        for(let i = 0; i<= itensComprados.length; i++){ // somando valor total
+        for(let i = 0; i < itensComprados.length; i++){ // loop usado para percorrer a lista de itens 
 
-            const estoque = this.estoqueRepository.consultaEstoqueId(itensComprados[i].estoqueId);
+            const estoque = this.estoqueRepository.consultaEstoqueId(itensComprados[i].estoqueId); //verificando se o estoque existe
 
             if(estoque){
                 if(estoque.quantidade < itensComprados[i].quantidade){
                     throw new Error("Estoque insuficiente...");
                 }
                 else{
+                   
+                    itensComprados[i].nome = this.modalidadeRepository.filtrarPorNome(estoque.modalidadeId);
+
                     console.log("estoque atual", estoque);
                     total += itensComprados[i].quantidade * estoque.precoVenda;
                     console.log("somando valores", total);
-                
-                    const produtos = itensComprados;
 
-                    const novaCompra = new VendaPaes(cpfCliente, total, produtos);
-                    this.vendaRepository.realizarVenda(novaCompra);
-                    console.log("Compra realizada com sucesso!", novaCompra); 
                     
-                    estoque.quantidade -= itensComprados[i].quantidade;
-                    console.log("estoque depois da compra", estoque);
-                    return novaCompra;
+                    estoque.quantidade -= itensComprados[i].quantidade; //atualizando quantidade de itens no estoque
+                    console.log("estoque depois da compra", estoque);  
                     
                 }
             }
             else{
                 throw new Error("Produto não existe!");
             }
+
         } 
-          
-         throw new Error("Erro ao realizar compra...")               
+        const produtos = itensComprados;
+
+        const novaCompra = new VendaPaes(cpfCliente, total, produtos);
+        this.vendaRepository.realizarVenda(novaCompra);
+        console.log("Compra realizada com sucesso!", novaCompra); 
+        
+        return novaCompra;
     }
 
 
