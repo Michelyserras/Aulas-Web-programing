@@ -12,7 +12,7 @@ export function getModalidade(){
     return modalidadeList;
 }
 
-export function getEstique(){
+export function getEstoque(){
     return estoqueList;
 }
 

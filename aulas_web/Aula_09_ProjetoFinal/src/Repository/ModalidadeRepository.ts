@@ -1,8 +1,9 @@
 import { Modalidade } from "../Model/ModalidadePaes";
+import { getModalidade } from "../global/global";
 
 export class ModalidadeRepository{
     // Modalidade
-     modalidadeList: Modalidade[] = [];
+     modalidadeList: Modalidade[] = getModalidade();
  
      cadastrarModalidade(product: Modalidade){
          this.modalidadeList.push(product);
