@@ -1,8 +1,9 @@
 import { EstoquePaes} from "../Model/estoque";
+import { getEstoque } from "../global/global";
 
 export class EstoqueRepository{
 
-    estoqueList: EstoquePaes[] = [];
+    estoqueList: EstoquePaes[] = getEstoque();
 
     adicionarEstoque(produto: EstoquePaes){
         this.estoqueList.push(produto);  
