@@ -11,17 +11,29 @@ export class EstoqueService{
 
     // Estoque 
 
-  adicionarEstoque(produtoData: EstoquePaes): EstoquePaes | undefined{
-   const {modalidadeId, quantidade, precoVenda} = produtoData;
-
-   if(!modalidadeId || !quantidade || !precoVenda){
-        throw new Error("Informações incompletas");
-   }
-    const novoEstoque = new EstoquePaes(modalidadeId, quantidade, precoVenda);
-    this.estoqueRepository.adicionarEstoque(novoEstoque);
-    return novoEstoque;
+adicionarEstoque(produtoData: EstoquePaes): EstoquePaes | undefined{
+    const {modalidadeId, quantidade, precoVenda} = produtoData;
     
-  }
+
+    if(!modalidadeId || !quantidade || !precoVenda){
+        throw new Error("Informações incompletas");
+    }
+
+    const novoEstoque = new EstoquePaes(modalidadeId, quantidade, precoVenda); //instanciando novo estoque;
+    const modalidadeExiste = this.modalidadeRepository.filtrarPorId(novoEstoque.modalidadeId); // verificando se a modalidade existe antes de add novo estoque;
+    console.log("")
+    const estoqueExiste = this.estoqueRepository.consultaEstoquePorMOD(novoEstoque.modalidadeId); // verificando se existe um estoque com a mesma modalidade;
+
+    if(modalidadeExiste){
+        this.estoqueRepository.adicionarEstoque(novoEstoque);
+        return novoEstoque;
+    }
+    if(estoqueExiste){
+        throw new Error("Estoque já existe! Tente atualizar a quantidade... utilizando put");
+    }
+    throw new Error("Modalidade não existe!");
+    
+    }
 
 
     ListaTodoEstoque():EstoquePaes[] {
