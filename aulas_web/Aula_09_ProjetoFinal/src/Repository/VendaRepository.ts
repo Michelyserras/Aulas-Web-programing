@@ -1,13 +1,10 @@
-import { idText } from "typescript";
+
 import { VendaPaes } from "../Model/vendaPaes";
-import { ItemVenda } from "../Model/itemVenda";
-import { EstoqueRepository } from "./EstoqueRepository";
+import { getVenda } from "../global/global";
 
-
-  
 export class VendaRepository{
     // venda
-    vendasList: VendaPaes[] = [];
+    vendasList: VendaPaes[] = getVenda();
 
     realizarVenda(compra: VendaPaes){
         this.vendasList.push(compra);
