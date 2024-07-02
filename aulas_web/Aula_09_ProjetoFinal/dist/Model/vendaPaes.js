@@ -9,7 +9,7 @@ class VendaPaes {
         this.itensComprados = itensComprados;
     }
     gerarId() {
-        return Date.now();
+        return Math.floor(Math.random() * 10000);
     }
 }
 exports.VendaPaes = VendaPaes;

@@ -9,7 +9,7 @@ class EstoquePaes {
         this.precoVenda = precoVenda;
     }
     gerarId() {
-        return Date.now();
+        return Math.floor(Math.random() * 10000);
     }
 }
 exports.EstoquePaes = EstoquePaes;

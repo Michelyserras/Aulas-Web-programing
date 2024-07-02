@@ -1,4 +1,4 @@
-import { ListFormat } from "typescript";
+
 
 
 export class EstoquePaes{
@@ -14,7 +14,7 @@ export class EstoquePaes{
         this.precoVenda = precoVenda
     }
     private gerarId(): number{
-        return Date.now();
+        return Math.floor(Math.random() * 10000);
     }
 
 

@@ -1,4 +1,3 @@
-import { ListFormat } from "typescript";
 
 export class ItemVenda{
     estoqueId:number;
