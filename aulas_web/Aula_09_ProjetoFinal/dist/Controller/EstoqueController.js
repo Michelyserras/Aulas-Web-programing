@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletarEstoque = exports.atualizaEstoque = exports.ProcurarId = exports.ListaEstoque = exports.adicionarAoEstoque = void 0;
+exports.adicionarAoEstoque = adicionarAoEstoque;
+exports.ListaEstoque = ListaEstoque;
+exports.ProcurarId = ProcurarId;
+exports.atualizaEstoque = atualizaEstoque;
+exports.deletarEstoque = deletarEstoque;
 const EstoqueService_1 = require("../Service/EstoqueService");
 const ModalidadeService_1 = require("../Service/ModalidadeService");
 const estoqueService = new EstoqueService_1.EstoqueService();
@@ -18,7 +22,6 @@ function adicionarAoEstoque(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.adicionarAoEstoque = adicionarAoEstoque;
 function ListaEstoque(req, res) {
     try {
         res.status(200).json({
@@ -29,7 +32,6 @@ function ListaEstoque(req, res) {
         res.status(404).json({ message: error.message });
     }
 }
-exports.ListaEstoque = ListaEstoque;
 function ProcurarId(req, res) {
     try {
         const id = estoqueService.ProcurarPorID(req.query.id);
@@ -44,7 +46,6 @@ function ProcurarId(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.ProcurarId = ProcurarId;
 function atualizaEstoque(req, res) {
     try {
         const estoqueAtlz = estoqueService.atualizarEstoque(req.body);
@@ -57,7 +58,6 @@ function atualizaEstoque(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.atualizaEstoque = atualizaEstoque;
 function deletarEstoque(req, res) {
     try {
         estoqueService.deletarEstoque(req.query.id);
@@ -69,5 +69,4 @@ function deletarEstoque(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.deletarEstoque = deletarEstoque;
 // Estoque fim

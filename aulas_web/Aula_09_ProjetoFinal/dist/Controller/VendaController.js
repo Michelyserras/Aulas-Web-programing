@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.realizarVenda = void 0;
+exports.realizarVenda = realizarVenda;
 const VendaService_1 = require("../Service/VendaService");
 const vendaService = new VendaService_1.VendaService();
 // vendas 
@@ -16,7 +16,6 @@ function realizarVenda(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.realizarVenda = realizarVenda;
 /*export function pesquisarVenda (req: Request, res: Response){
     try {
         const id = vendaService.ProcurarVendaPorID(req.query.id);

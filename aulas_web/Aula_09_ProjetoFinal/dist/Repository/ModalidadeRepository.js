@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ModalidadeRepository = void 0;
+const global_1 = require("../global/global");
 class ModalidadeRepository {
     constructor() {
         // Modalidade
-        this.modalidadeList = [];
+        this.modalidadeList = (0, global_1.getModalidade)();
         //Modalidade Fim
     }
     cadastrarModalidade(product) {

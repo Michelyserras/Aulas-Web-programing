@@ -21,19 +21,22 @@ adicionarEstoque(produtoData: EstoquePaes): EstoquePaes | undefined{
 
     const novoEstoque = new EstoquePaes(modalidadeId, quantidade, precoVenda); //instanciando novo estoque;
     const modalidadeExiste = this.modalidadeRepository.filtrarPorId(novoEstoque.modalidadeId); // verificando se a modalidade existe antes de add novo estoque;
-    console.log("")
-    const estoqueExiste = this.estoqueRepository.consultaEstoquePorMOD(novoEstoque.modalidadeId); // verificando se existe um estoque com a mesma modalidade;
+    console.log("Verificando modalidade", modalidadeExiste);
+    
 
     if(modalidadeExiste){
+        const estoqueExiste = this.estoqueRepository.consultaEstoquePorMOD(novoEstoque.modalidadeId); // verificando se existe um estoque com a mesma modalidade;
+        console.log("Verificando se estoque existe", estoqueExiste);
+        
+        if(estoqueExiste){
+            throw new Error("Estoque já existe! Tente atualizar a quantidade... utilizando put");
+        }
         this.estoqueRepository.adicionarEstoque(novoEstoque);
         return novoEstoque;
     }
-    if(estoqueExiste){
-        throw new Error("Estoque já existe! Tente atualizar a quantidade... utilizando put");
-    }
     throw new Error("Modalidade não existe!");
-    
     }
+
 
 
     ListaTodoEstoque():EstoquePaes[] {
