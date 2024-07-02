@@ -60,4 +60,8 @@ export class VendaService {
         return novaCompra;
     }
 
+
+    listarCompras(){
+        
+    }
 }

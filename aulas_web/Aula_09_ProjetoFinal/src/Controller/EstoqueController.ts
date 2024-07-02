@@ -65,6 +65,19 @@ export function atualizaEstoque(req: Request, res: Response){
     }
 }
 
+/*export function deletarQtdEstoque(req: Request, res:Response){
+    try{
+        const estoqueAtual = estoqueService.retirarEstoque(req.body)
+        res.status(200).json({
+            message: "Quantidade excluída com sucesso",
+            estoque: estoqueAtual
+        })
+    } catch(error: any){
+        res.status(400).json({message: error.message});
+    }
+}
+*/
+
 export function deletarEstoque(req: Request, res:Response){
     try{
         estoqueService.deletarEstoque(req.query.id);

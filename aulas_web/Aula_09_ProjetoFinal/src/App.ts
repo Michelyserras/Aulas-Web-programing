@@ -19,7 +19,6 @@ app.get("/api/modalidade", pesquisarModalidade);
 app.get("/api/modalidade/todas", listaModalidade );
 app.put("/api/modalidade", alterarModalidade );
 app.delete("/api/modalidade", deletarModalidade);
-
 //Modalidade fim
 
 //Estoque 
@@ -27,7 +26,8 @@ app.post("/api/estoque", adicionarAoEstoque);
 app.get("/api/estoque/todos", ListaEstoque);
 app.get("/api/estoque", ProcurarId);
 app.put("/api/estoque", atualizaEstoque);
-app.delete("/api/estoque", deletarEstoque)
+app.delete("/api/estoque", deletarEstoque);
+//app.delete("api/estoque", deletarQtdEstoque);
 
 //Estoque fim
 

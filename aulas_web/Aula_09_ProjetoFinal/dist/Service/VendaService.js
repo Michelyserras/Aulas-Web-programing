@@ -44,5 +44,7 @@ class VendaService {
         console.log("Compra realizada com sucesso!", novaCompra);
         return novaCompra;
     }
+    listarCompras() {
+    }
 }
 exports.VendaService = VendaService;

@@ -15,7 +15,6 @@ export class ModalidadeRepository{
 
      filtrarPorNome(id: number): any {
         const modalidade = this.filtrarPorId(id);
-        
         if(modalidade){
             return modalidade.nome ;
         }

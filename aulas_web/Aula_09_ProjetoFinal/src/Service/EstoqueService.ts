@@ -72,6 +72,7 @@ adicionarEstoque(produtoData: EstoquePaes): EstoquePaes | undefined{
 
     }
 
+    
     deletarEstoque(estoqueData: any){
         const estoque = this.ProcurarPorID(estoqueData);
 
@@ -82,27 +83,14 @@ adicionarEstoque(produtoData: EstoquePaes): EstoquePaes | undefined{
         }
     }
 
-    retirarEstoque(estoqueData: any): EstoquePaes{
-        const {id, quantidade, precoVenda} = estoqueData;
-        
-        
-        if(!id || !quantidade || !precoVenda){
-            throw new Error("Informações incompletas");
+   /* retirarEstoque(estoqueData: any): any{
+        const estoque = this.ProcurarPorID(estoqueData);
+
+        if(estoque){
+            return this.estoqueRepository.deletarQtd(estoque);
+        }else{
+            throw new Error("Estoque informado não existe!");
         }
-
-       let novoP = this.ProcurarPorID(id);
-
-       if(!novoP){
-        throw new Error(" Estoque não cadastrado");
-       }
-
-       novoP.id = id;
-       novoP.quantidade -= quantidade;
-       novoP.precoVenda = precoVenda;
-
-       this.estoqueRepository.alterarEstoque(novoP);
-       return novoP;
-
     }
-
+*/
     }

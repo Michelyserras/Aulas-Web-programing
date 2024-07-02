@@ -8,6 +8,16 @@ class EstoqueService {
     constructor() {
         this.estoqueRepository = new EstoqueRepository_1.EstoqueRepository();
         this.modalidadeRepository = new ModalidadeRepository_1.ModalidadeRepository();
+        /* retirarEstoque(estoqueData: any): any{
+             const estoque = this.ProcurarPorID(estoqueData);
+     
+             if(estoque){
+                 return this.estoqueRepository.deletarQtd(estoque);
+             }else{
+                 throw new Error("Estoque informado não existe!");
+             }
+         }
+     */
     }
     // Estoque 
     adicionarEstoque(produtoData) {
@@ -60,21 +70,6 @@ class EstoqueService {
         else {
             throw new Error("Estoque informado não existe!");
         }
-    }
-    retirarEstoque(estoqueData) {
-        const { id, quantidade, precoVenda } = estoqueData;
-        if (!id || !quantidade || !precoVenda) {
-            throw new Error("Informações incompletas");
-        }
-        let novoP = this.ProcurarPorID(id);
-        if (!novoP) {
-            throw new Error(" Estoque não cadastrado");
-        }
-        novoP.id = id;
-        novoP.quantidade -= quantidade;
-        novoP.precoVenda = precoVenda;
-        this.estoqueRepository.alterarEstoque(novoP);
-        return novoP;
     }
 }
 exports.EstoqueService = EstoqueService;

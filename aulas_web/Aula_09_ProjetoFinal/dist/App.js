@@ -27,6 +27,7 @@ app.get("/api/estoque/todos", EstoqueController_1.ListaEstoque);
 app.get("/api/estoque", EstoqueController_1.ProcurarId);
 app.put("/api/estoque", EstoqueController_1.atualizaEstoque);
 app.delete("/api/estoque", EstoqueController_1.deletarEstoque);
+//app.delete("api/estoque", deletarQtdEstoque);
 //Estoque fim
 //venda
 app.post("/api/venda", VendaController_1.realizarVenda);
