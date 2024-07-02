@@ -23,18 +23,26 @@ export class VendaService {
         }
 
         this.itensRepository.itensList.forEach(produto => {
-
+            const itens = this.itensRepository.itensList;
             const estoqueExiste = this.estoqueRepository.consultaEstoqueId(produto.estoqueId);
             console.log("Estoque existe", estoqueExiste);
-            
-
+            let total = 0;
+        
             if(estoqueExiste){
+
                 if(produto.quantidade > estoqueExiste.quantidade){ // verificando se há estoque suficiente para realizar a venda
                     throw new Error("Estoque do produto é insuficiente para realizar a venda!" + estoqueExiste);
+
                 } else if(produto.quantidade < estoqueExiste.quantidade){ // caso haja, vamos adicionar os produtos a lista de itens;
-                    
+                    const itens = this.itensRepository.adicionarItens(produto);
+                    console.log("Adicionando itens a compra", itens);
                 }
+                for(let i = 0; i<= itens.length; i++){ // somando valor total
+                    total = produto.quantidade * estoqueExiste.precoVenda;
+                }
+                
             }
+
         });
        
     }
