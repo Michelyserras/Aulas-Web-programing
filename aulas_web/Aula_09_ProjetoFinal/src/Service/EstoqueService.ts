@@ -21,13 +21,13 @@ adicionarEstoque(produtoData: EstoquePaes): EstoquePaes | undefined{
 
     const novoEstoque = new EstoquePaes(modalidadeId, quantidade, precoVenda); //instanciando novo estoque;
     const modalidadeExiste = this.modalidadeRepository.filtrarPorId(novoEstoque.modalidadeId); // verificando se a modalidade existe antes de add novo estoque;
-    console.log("Verificando modalidade", modalidadeExiste);
+    console.log("Verificando modalidade: ", modalidadeExiste);
     
 
     if(modalidadeExiste){
         const estoqueExiste = this.estoqueRepository.consultaEstoquePorMOD(novoEstoque.modalidadeId); // verificando se existe um estoque com a mesma modalidade;
         console.log("Verificando se estoque existe", estoqueExiste);
-        
+
         if(estoqueExiste){
             throw new Error("Estoque já existe! Tente atualizar a quantidade... utilizando put");
         }
