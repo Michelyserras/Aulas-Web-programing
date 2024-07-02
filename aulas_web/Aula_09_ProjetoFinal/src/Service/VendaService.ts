@@ -18,11 +18,24 @@ export class VendaService {
     cadastrarCompra(compraData: VendaPaes){
         const { cpfCliente, itensComprados} = compraData;
     
-
-        if(!cpfCliente || itensComprados){
+        if(!cpfCliente || !itensComprados){
             throw new Error("Informações incompletas");
         }
-        
+
+        this.itensRepository.itensList.forEach(produto => {
+
+            const estoqueExiste = this.estoqueRepository.consultaEstoqueId(produto.estoqueId);
+            console.log("Estoque existe", estoqueExiste);
+            
+
+            if(estoqueExiste){
+                if(produto.quantidade > estoqueExiste.quantidade){ // verificando se há estoque suficiente para realizar a venda
+                    throw new Error("Estoque do produto é insuficiente para realizar a venda!" + estoqueExiste);
+                } else if(produto.quantidade < estoqueExiste.quantidade){ // caso haja, vamos adicionar os produtos a lista de itens;
+                    
+                }
+            }
+        });
        
     }
       
