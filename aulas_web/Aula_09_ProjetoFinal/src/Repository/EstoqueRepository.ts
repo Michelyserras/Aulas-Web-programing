@@ -19,9 +19,7 @@ export class EstoqueRepository{
 
     consultaEstoquePorMOD(idNum: number): EstoquePaes | undefined{
         return this.estoqueList.find(Estoque => Estoque.modalidadeId === idNum);
-    }
-
-  
+    }  
     
     alterarEstoque(produto: EstoquePaes): number{
         const index = this.estoqueList.indexOf(produto);
