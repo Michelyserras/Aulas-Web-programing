@@ -34,7 +34,7 @@ export class VendaService {
                 else{
                    // caso contrário a venda será realizada
 
-                    itensComprados[i].nome = this.modalidadeRepository.filtrarPorNome(estoque.modalidadeId); // adicionando o nome do produto na venda
+                    itensComprados[i].nome = this.modalidadeRepository.buscarPorNome(estoque.modalidadeId); // adicionando o nome do produto na venda
 
                     console.log("estoque atual", estoque);
                     total += itensComprados[i].quantidade * estoque.precoVenda; // somando valor total

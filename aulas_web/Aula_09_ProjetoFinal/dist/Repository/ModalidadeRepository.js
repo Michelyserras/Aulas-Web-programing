@@ -14,7 +14,7 @@ class ModalidadeRepository {
     filtrarPorId(id) {
         return this.modalidadeList.find(Modalidade => Modalidade.id === id);
     }
-    filtrarPorNome(id) {
+    buscarPorNome(id) {
         const modalidade = this.filtrarPorId(id);
         if (modalidade) {
             return modalidade.nome;
@@ -22,6 +22,9 @@ class ModalidadeRepository {
         else {
             return undefined;
         }
+    }
+    filtrarPorNome(nome) {
+        return this.modalidadeList.find(Modalidade => Modalidade.nome === nome);
     }
     exibeTodasModalidade() {
         return this.modalidadeList;

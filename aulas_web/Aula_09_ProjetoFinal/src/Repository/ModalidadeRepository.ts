@@ -13,7 +13,7 @@ export class ModalidadeRepository{
          return this.modalidadeList.find(Modalidade => Modalidade.id === id);
      }
 
-     filtrarPorNome(id: number): any {
+     buscarPorNome(id: number): any {
         const modalidade = this.filtrarPorId(id);
         if(modalidade){
             return modalidade.nome ;
@@ -24,6 +24,9 @@ export class ModalidadeRepository{
         
     }
  
+    filtrarPorNome(nome: string): Modalidade | undefined{
+        return this.modalidadeList.find(Modalidade => Modalidade.nome === nome);
+    }
      exibeTodasModalidade(): Modalidade[]{
          return this.modalidadeList;
      }

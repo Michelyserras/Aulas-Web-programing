@@ -15,8 +15,14 @@ class ModalidadeService {
             throw new Error("Informações incompletas");
         }
         const novaModalidade = new ModalidadePaes_1.Modalidade(nome, vegano);
-        this.modalidadeRepository.cadastrarModalidade(novaModalidade);
-        return novaModalidade;
+        const modalidadeExiste = this.modalidadeRepository.filtrarPorNome(novaModalidade.nome);
+        if (modalidadeExiste) {
+            throw new Error("Essa modalidade já existe!" + modalidadeExiste);
+        }
+        else {
+            this.modalidadeRepository.cadastrarModalidade(novaModalidade);
+            return novaModalidade;
+        }
     }
     consultarModalidade(id) {
         const idNumber = parseInt(id, 10);
