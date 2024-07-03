@@ -81,10 +81,28 @@ adicionarEstoque(produtoData: EstoquePaes): EstoquePaes | undefined{
 
     
     deletarEstoque(estoqueData: EstoquePaes){
+
         const estoqueExiste = this.estoqueRepository.consultaEstoqueId(estoqueData.id);
+        
+        const lista = this.estoqueRepository.estoqueList; 
+        let i = 0;
 
         if(estoqueExiste){
-            return this.estoqueRepository.deletarEstoque(estoqueExiste);
+            for(i=0; i < lista.length; i++){
+    
+                    if(estoqueData.quantidade <= lista[i].quantidade){
+    
+                        lista[i].quantidade -= estoqueData.quantidade;
+    
+                        if(lista[i].quantidade === 0){
+                            lista.splice(i,1);
+                        }
+    
+                        return lista[i];
+                    }else{
+                        throw new Error("O estoque não possui quantidade suficiente para ser removido.")
+                    }
+                }
         }
         else{
             throw new Error("Estoque informado não existe!");
