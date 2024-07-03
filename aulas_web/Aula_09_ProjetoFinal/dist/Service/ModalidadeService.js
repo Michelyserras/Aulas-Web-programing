@@ -17,7 +17,7 @@ class ModalidadeService {
         const novaModalidade = new ModalidadePaes_1.Modalidade(nome, vegano);
         const modalidadeExiste = this.modalidadeRepository.filtrarPorNome(novaModalidade.nome);
         if (modalidadeExiste) {
-            throw new Error("Essa modalidade já existe!" + modalidadeExiste);
+            throw new Error("Essa modalidade já existe!");
         }
         else {
             this.modalidadeRepository.cadastrarModalidade(novaModalidade);

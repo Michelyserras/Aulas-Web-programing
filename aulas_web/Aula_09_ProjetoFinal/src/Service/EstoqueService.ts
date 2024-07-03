@@ -80,12 +80,13 @@ adicionarEstoque(produtoData: EstoquePaes): EstoquePaes | undefined{
     }
 
     
-    deletarEstoque(estoqueData: any){
-        const estoque = this.ProcurarPorID(estoqueData);
+    deletarEstoque(estoqueData: EstoquePaes){
+        const estoqueExiste = this.estoqueRepository.consultaEstoqueId(estoqueData.id);
 
-        if(estoque){
-            return this.estoqueRepository.deletarEstoque(estoque);
-        }else{
+        if(estoqueExiste){
+            return this.estoqueRepository.deletarEstoque(estoqueExiste);
+        }
+        else{
             throw new Error("Estoque informado não existe!");
         }
     }

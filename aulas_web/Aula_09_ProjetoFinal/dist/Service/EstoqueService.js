@@ -69,9 +69,9 @@ class EstoqueService {
         return novoP;
     }
     deletarEstoque(estoqueData) {
-        const estoque = this.ProcurarPorID(estoqueData);
-        if (estoque) {
-            return this.estoqueRepository.deletarEstoque(estoque);
+        const estoqueExiste = this.estoqueRepository.consultaEstoqueId(estoqueData.id);
+        if (estoqueExiste) {
+            return this.estoqueRepository.deletarEstoque(estoqueExiste);
         }
         else {
             throw new Error("Estoque informado não existe!");
