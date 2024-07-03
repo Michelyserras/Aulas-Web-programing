@@ -39,6 +39,18 @@ export function pesquisarVenda (req: Request, res: Response){
     }
 }
 
+export function ListaCompras(req: Request, res:Response){
+    try{
+        res.status(200).json({
+            estoque: vendaService.listarCompras(),
+        })
+    }
+    catch (error: any){
+        res.status(404).json({message: error.message})
+    }
+}
+
+
 // vendas fim
 // controler conversa direto com o service
 //service é a regra de negócioo

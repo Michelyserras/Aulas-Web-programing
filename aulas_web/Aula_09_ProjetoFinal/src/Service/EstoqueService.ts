@@ -40,7 +40,14 @@ adicionarEstoque(produtoData: EstoquePaes): EstoquePaes | undefined{
 
 
     ListaTodoEstoque():EstoquePaes[] {
-        return this.estoqueRepository.listarEstoque();
+        const listaTamanho = this.estoqueRepository.estoqueList.length;
+        if(listaTamanho > 0){
+            return this.estoqueRepository.listarEstoque();
+        }
+        else{
+            throw new Error("Não há nenhum estoque cadastrado!");
+        }
+       
     }
 
     ProcurarPorID(id: any){

@@ -67,4 +67,14 @@ export class VendaService {
         return this.vendaRepository.consultaCompraId(id);
     }
 
+    listarCompras():VendaPaes[] {
+        if(this.vendaRepository.vendasList.length > 0){
+            return this.vendaRepository.listarCompras();
+        }
+        else{
+            throw new Error("Não há nenhuma venda cadastrada!");
+        }
+        
+    }
+
 }

@@ -40,7 +40,13 @@ class EstoqueService {
         throw new Error("Modalidade não existe!");
     }
     ListaTodoEstoque() {
-        return this.estoqueRepository.listarEstoque();
+        const listaTamanho = this.estoqueRepository.estoqueList.length;
+        if (listaTamanho > 0) {
+            return this.estoqueRepository.listarEstoque();
+        }
+        else {
+            throw new Error("Não há nenhum estoque cadastrado!");
+        }
     }
     ProcurarPorID(id) {
         const numId = parseInt(id, 10);

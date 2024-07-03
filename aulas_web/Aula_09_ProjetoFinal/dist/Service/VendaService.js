@@ -49,5 +49,13 @@ class VendaService {
         console.log(idNum);
         return this.vendaRepository.consultaCompraId(id);
     }
+    listarCompras() {
+        if (this.vendaRepository.vendasList.length > 0) {
+            return this.vendaRepository.listarCompras();
+        }
+        else {
+            throw new Error("Não há nenhuma venda cadastrada!");
+        }
+    }
 }
 exports.VendaService = VendaService;

@@ -14,5 +14,8 @@ class VendaRepository {
     consultaCompraId(idNum) {
         return this.vendasList.find(Vendas => Vendas.id === idNum);
     }
+    listarCompras() {
+        return this.vendasList;
+    }
 }
 exports.VendaRepository = VendaRepository;

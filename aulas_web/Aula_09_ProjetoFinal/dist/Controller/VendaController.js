@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pesquisarVenda = exports.realizarVenda = void 0;
+exports.ListaCompras = exports.pesquisarVenda = exports.realizarVenda = void 0;
 const VendaService_1 = require("../Service/VendaService");
 const vendaService = new VendaService_1.VendaService();
 // vendas 
@@ -32,6 +32,17 @@ function pesquisarVenda(req, res) {
     }
 }
 exports.pesquisarVenda = pesquisarVenda;
+function ListaCompras(req, res) {
+    try {
+        res.status(200).json({
+            estoque: vendaService.listarCompras(),
+        });
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+exports.ListaCompras = ListaCompras;
 // vendas fim
 // controler conversa direto com o service
 //service é a regra de negócioo
