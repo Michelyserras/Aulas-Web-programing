@@ -11,8 +11,8 @@ class VendaRepository {
     realizarVenda(compra) {
         this.vendasList.push(compra);
     }
-    getVendas() {
-        return this.vendasList;
+    consultaCompraId(idNum) {
+        return this.vendasList.find(Vendas => Vendas.id === idNum);
     }
 }
 exports.VendaRepository = VendaRepository;

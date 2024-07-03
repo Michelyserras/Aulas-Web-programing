@@ -5,7 +5,6 @@ import { ModalidadeService } from "../Service/ModalidadeService";
 
 
 const  estoqueService = new EstoqueService();
-const modalidadeService = new ModalidadeService();
 
  
 // Estoque

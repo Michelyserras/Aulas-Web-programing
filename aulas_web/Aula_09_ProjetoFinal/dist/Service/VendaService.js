@@ -44,7 +44,10 @@ class VendaService {
         console.log("Compra realizada com sucesso!", novaCompra);
         return novaCompra;
     }
-    listarCompras() {
+    procurarCompras(idNum) {
+        const id = parseInt(idNum, 10);
+        console.log(idNum);
+        return this.vendaRepository.consultaCompraId(id);
     }
 }
 exports.VendaService = VendaService;

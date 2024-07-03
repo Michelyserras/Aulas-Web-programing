@@ -10,10 +10,10 @@ export class VendaRepository{
         this.vendasList.push(compra);
     }
 
-    getVendas(): VendaPaes[] {
-        return this.vendasList;
+   
+    consultaCompraId(idNum: number): VendaPaes | undefined{
+        return this.vendasList.find(Vendas =>Vendas.id === idNum);
     }
-
     
 
     // venda fim

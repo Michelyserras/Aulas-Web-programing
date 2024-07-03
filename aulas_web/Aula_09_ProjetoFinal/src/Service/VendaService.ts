@@ -61,7 +61,10 @@ export class VendaService {
     }
 
 
-    listarCompras(){
-        
+    procurarCompras(idNum: any){
+        const id = parseInt(idNum, 10);
+        console.log(idNum);
+        return this.vendaRepository.consultaCompraId(id);
     }
+
 }

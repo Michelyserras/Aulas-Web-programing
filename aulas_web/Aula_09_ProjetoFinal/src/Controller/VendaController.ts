@@ -4,7 +4,7 @@ import { VendaService} from "../Service/VendaService";
 import express, { Request, Response } from "express";
 
 const vendaService = new VendaService();
-const estoqueService = new EstoqueService();
+
 
 
 // vendas 
@@ -22,27 +22,25 @@ export function realizarVenda(req:Request, res:Response){
     }
 }
 
-/*export function pesquisarVenda (req: Request, res: Response){
+export function pesquisarVenda (req: Request, res: Response){
     try {
-        const id = vendaService.ProcurarVendaPorID(req.query.id);
+
+        const id:any = vendaService.procurarCompras(req.query.id);
+
         if(id){
-        res.status(200).json(
-            {
-                mensagem:"Modalidade encontrada com sucesso!",
-                modalidade: id,
-            }
-            );
-        }else{
-            res.status(404).json({mensagem:"Modalidade não encontrado."});
+            res.status(200).json(
+                {
+                    mensagem:"Venda encontrada com sucesso!",
+                    modalidade: id,
+                })
         }
     } catch (error: any) {
         res.status(400).json({ message: error.message});
     }
-};
+}
 
 // vendas fim
 // controler conversa direto com o service
 //service é a regra de negócioo
 //repository parte de tratamento com o banco de dados
 // model é a representação da entidade
-*/

@@ -2,9 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletarEstoque = exports.atualizaEstoque = exports.ProcurarId = exports.ListaEstoque = exports.adicionarAoEstoque = void 0;
 const EstoqueService_1 = require("../Service/EstoqueService");
-const ModalidadeService_1 = require("../Service/ModalidadeService");
 const estoqueService = new EstoqueService_1.EstoqueService();
-const modalidadeService = new ModalidadeService_1.ModalidadeService();
 // Estoque
 function adicionarAoEstoque(req, res) {
     try {
