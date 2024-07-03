@@ -69,11 +69,10 @@ class EstoqueService {
         return novoP;
     }
     deletarEstoque(estoqueData) {
-        const estoqueExiste = this.estoqueRepository.consultaEstoqueId(estoqueData.id);
         const lista = this.estoqueRepository.estoqueList;
         let i = 0;
-        if (estoqueExiste) {
-            for (i = 0; i < lista.length; i++) {
+        for (i = 0; i < lista.length; i++) {
+            if (estoqueData.id === lista[i].id) {
                 if (estoqueData.quantidade <= lista[i].quantidade) {
                     lista[i].quantidade -= estoqueData.quantidade;
                     if (lista[i].quantidade === 0) {
@@ -86,9 +85,7 @@ class EstoqueService {
                 }
             }
         }
-        else {
-            throw new Error("Estoque informado não existe!");
-        }
+        throw new Error("Estoque informado não existe!");
     }
 }
 exports.EstoqueService = EstoqueService;
