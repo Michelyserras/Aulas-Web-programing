@@ -88,17 +88,17 @@ adicionarEstoque(produtoData: EstoquePaes): EstoquePaes | undefined{
 
         for(i=0; i < lista.length; i++){
 
-            if(estoqueData.id === lista[i].id){
+            if(estoqueData.id === lista[i].id){ // verifica se o id existe na lista
 
-                if(estoqueData.quantidade <= lista[i].quantidade){
+                if(estoqueData.quantidade <= lista[i].quantidade){ // verifica se a quantidade a ser retirada é menor a quantidade disponivel em estoque
+ 
+                    lista[i].quantidade -= estoqueData.quantidade; // remove a quantidade do estoque
 
-                    lista[i].quantidade -= estoqueData.quantidade;
-
-                    if(lista[i].quantidade === 0){
+                    if(lista[i].quantidade === 0){ // se a quantidade for igual a 0, remove todo os dados do estoqye
                         lista.splice(i,1);
                     }
 
-                    return lista[i];
+                    return lista[i]; //retorna a lista atualizada
                 }else{
                     throw new Error("O estoque não possui quantidade suficiente para ser removido.")
                 }

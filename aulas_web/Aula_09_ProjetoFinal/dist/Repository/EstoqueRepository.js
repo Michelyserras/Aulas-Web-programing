@@ -5,21 +5,6 @@ const global_1 = require("../global/global");
 class EstoqueRepository {
     constructor() {
         this.estoqueList = (0, global_1.getEstoque)();
-        // deletarEstoque(produto: EstoquePaes){
-        //     let i = 0;
-        //     const lista = this.estoqueList;
-        //     for(i=0; i < lista.length; i++){
-        //         if(produto.id === lista[i].id){
-        //             if(produto.quantidade <= lista[i].quantidade){
-        //                 lista[i].quantidade -= produto.quantidade;
-        //                 if(lista[i].quantidade === 0){
-        //                     lista.splice(i,1);
-        //                 }
-        //                 return lista[i];
-        //             }
-        //         }
-        //     }
-        // }
         //Estoque fim
     }
     adicionarEstoque(produto) {
