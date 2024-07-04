@@ -31,7 +31,7 @@ export function pesquisarVenda (req: Request, res: Response){
             res.status(200).json(
                 {
                     mensagem:"Venda encontrada com sucesso!",
-                    modalidade: id,
+                    Venda: id,
                 })
         }
     } catch (error: any) {
