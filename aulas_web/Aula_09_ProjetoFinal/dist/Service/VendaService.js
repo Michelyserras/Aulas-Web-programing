@@ -19,29 +19,35 @@ class VendaService {
             throw new Error("Informações incompletas");
         }
         for (let i = 0; i < itensComprados.length; i++) { // loop usado para percorrer a lista de itens 
-            const estoque = this.estoqueRepository.consultaEstoqueId(itensComprados[i].estoqueId); //verificando se o estoque existe
-            if (estoque) { // a compra apenas sera realizada se houver um estoque disponivel
-                if (estoque.quantidade < itensComprados[i].quantidade) { // se o a quantidade disponivel de produtos for menor que a quantidade comprada
-                    throw new Error("Estoque insuficiente...");
-                }
-                else {
-                    // caso contrário a venda será realizada
-                    itensComprados[i].nome = this.modalidadeRepository.buscarPorNome(estoque.modalidadeId); // adicionando o nome do produto na venda
-                    console.log("estoque atual", estoque);
-                    total += itensComprados[i].quantidade * estoque.precoVenda; // somando valor total
-                    console.log("somando valores", total);
-                    estoque.quantidade -= itensComprados[i].quantidade; //atualizando quantidade de itens no estoque
-                    console.log("estoque depois da compra", estoque);
-                }
-            }
-            else {
+            const estoque = this.estoqueRepository.consultaEstoqueId(itensComprados[i].estoqueId);
+            //verificando se o estoque existe
+            if (!estoque) {
                 throw new Error("Produto não existe!");
+            }
+            // a compra apenas sera realizada se houver um estoque disponivel
+            if (itensComprados[i].quantidade > estoque.quantidade) { // se o a quantidade disponivel de produtos for menor que a quantidade comprada
+                throw new Error(`O produto ${itensComprados[i].nome} está esgotado, não será possível efetivar a compra!`);
+            }
+            // caso contrário a venda será realizada
+            if (estoque.quantidade <= estoque.quantidade) {
+                itensComprados[i].nome = this.modalidadeRepository.buscarPorNome(estoque.modalidadeId); // adicionando o nome do produto na venda
+                console.log("estoque atual", estoque);
+                total += itensComprados[i].quantidade * estoque.precoVenda; // somando valor total
+                console.log("somando valores", total);
             }
         }
         const produtos = itensComprados;
         const novaCompra = new vendaPaes_1.VendaPaes(cpfCliente, total, produtos);
         this.vendaRepository.realizarVenda(novaCompra);
         console.log("Compra realizada com sucesso!", novaCompra);
+        //atualizando o estoque após a venda
+        for (let i = 0; i < itensComprados.length; i++) {
+            const estoque = this.estoqueRepository.consultaEstoqueId(itensComprados[i].estoqueId);
+            if (estoque) { // apenas se o estoque existir a quantidade será retirada.
+                estoque.quantidade -= itensComprados[i].quantidade;
+                console.log(`Estoque atualizado para o produto ${itensComprados[i].nome}: ${estoque.quantidade}`);
+            }
+        }
         return novaCompra;
     }
     procurarCompras(idNum) {
