@@ -12,7 +12,11 @@ export class Product{
         this.id = id || 0;
         this.title = title || '';
         this.author = author || '';
-        this.name = name || '';
-        this.price = price || 0;
+        this.publishedDate = publishedDate || '';
+        this.isbn = isbn || '';
+        this.pages = pages || 0;
+        this.language = language || '';
+        this.publisher = publisher || '';
+        
     }
 }
