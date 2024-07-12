@@ -24,13 +24,13 @@ export class ProductRepository{
         }
     }
 
-    async insertProduct(id:number, title:string, author:string, publishedDate: string, isbn: string, pages: number, language:string, publisher:string) :Promise<Product>{
+    async insertProduct( title:string, author:string, publishedDate: string, isbn: string, pages: number, language:string, publisher:string) :Promise<Product>{
         const query = "INSERT INTO vendas.Product ( title, author, publishedDate, isbn, pages, language, publisher) VALUES (?, ?)" ;
 
         try {
             const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher]);
             console.log('Produto inserido com sucesso, ID: ', resultado.insertId);
-            const product = new Product(resultado.insertId, title, author, publishedDate, isbn, pages, language, publisher);
+            const product = new Product( title, author, publishedDate, isbn, pages, language, publisher);
             return new Promise<Product>((resolve)=>{
                 resolve(product);
             })

@@ -5,13 +5,13 @@ export class ProductService{
 
     productRepository: ProductRepository = new ProductRepository();
 
-    cadastrarProduto(produtoData: any): Product {
-        const { id, title, author, publishedDate, isbn, pages, language, publisher } = produtoData;
-        if(!id ||  !title || !author || !publishedDate || !isbn || !pages || !language || !publisher){
+    cadastrarProduto(produtoData: any): Promise<Product>{
+        const {title, author, publishedDate, isbn, pages, language, publisher } = produtoData;
+        if( !title || !author || !publishedDate || !isbn || !pages || !language || !publisher){
             throw new Error("Informações incompletas");
         }
 
-        const novoProduto = this.productRepository.insertProduct(id, title, author, publishedDate, isbn, pages, language, publisher);
+        const novoProduto = this.productRepository.insertProduct(title, author, publishedDate, isbn, pages, language, publisher);
         console.log("Service ", novoProduto);
         return novoProduto;
     }
