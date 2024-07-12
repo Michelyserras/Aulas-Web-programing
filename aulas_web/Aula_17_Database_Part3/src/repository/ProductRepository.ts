@@ -5,10 +5,15 @@ export class ProductRepository{
 
     async createTable() {
         const query = `
-        CREATE TABLE IF NOT EXISTS Vendas.Product (
+        CREATE TABLE IF NOT EXISTS livros.Product (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            price DECIMAL(10,2) NOT NULL
+            title VARCHAR(255) NOT NULL,
+            author VARCHAR(255) NOT NULL, 
+            publishedDate VARCHAR(255) NOT NULL,
+            isbn VARCHAR(255) NOT NULL
+            pages INT NOT NULL
+            language VARCHAR(255) NOT NULL,
+            publisher VARCHAR(255) NOT NULL,
         )`;
 
         try {
@@ -19,13 +24,13 @@ export class ProductRepository{
         }
     }
 
-    async insertProduct(name: string, price: number) :Promise<Product>{
-        const query = "INSERT INTO vendas.Product (name, price) VALUES (?, ?)" ;
+    async insertProduct(id:number, title:string, author:string, publishedDate: string, isbn: string, pages: number, language:string, publisher:string) :Promise<Product>{
+        const query = "INSERT INTO vendas.Product ( title, author, publishedDate, isbn, pages, language, publisher) VALUES (?, ?)" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [name, price]);
+            const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher]);
             console.log('Produto inserido com sucesso, ID: ', resultado.insertId);
-            const product = new Product(resultado.insertId,name, price);
+            const product = new Product(resultado.insertId, title, author, publishedDate, isbn, pages, language, publisher);
             return new Promise<Product>((resolve)=>{
                 resolve(product);
             })
