@@ -6,12 +6,12 @@ export class ProductService{
     productRepository: ProductRepository = new ProductRepository();
 
     cadastrarProduto(produtoData: any): Product {
-        const { name, price } = produtoData;
-        if(!name || !price ){
+        const { id, title, author, publishedDate, isbn, pages, language, publisher } = produtoData;
+        if(!id ||  !title || !author || !publishedDate || !isbn || !pages || !language || !publisher){
             throw new Error("Informações incompletas");
         }
 
-        const novoProduto = this.productRepository.insertProduct(name, price);
+        const novoProduto = this.productRepository.insertProduct(id, title, author, publishedDate, isbn, pages, language, publisher);
         console.log("Service ", novoProduto);
         return novoProduto;
     }
