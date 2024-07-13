@@ -5,7 +5,7 @@ export class ProductRepository{
 
     async createTable() {
         const query = `
-        CREATE TABLE IF NOT EXISTS livros.Product (
+        CREATE TABLE IF NOT EXISTS livros.livro (
             id INT AUTO_INCREMENT PRIMARY KEY,
             title VARCHAR(255) NOT NULL,
             author VARCHAR(255) NOT NULL, 
@@ -13,7 +13,7 @@ export class ProductRepository{
             isbn VARCHAR(255) NOT NULL
             pages INT NOT NULL
             language VARCHAR(255) NOT NULL,
-            publisher VARCHAR(255) NOT NULL,
+            publisher VARCHAR(255) NOT NULL
         )`;
 
         try {
@@ -25,7 +25,7 @@ export class ProductRepository{
     }
 
     async insertProduct( title:string, author:string, publishedDate: string, isbn: string, pages: number, language:string, publisher:string) :Promise<Product>{
-        const query = "INSERT INTO vendas.Product ( title, author, publishedDate, isbn, pages, language, publisher) VALUES (?, ?)" ;
+        const query = "INSERT INTO livros.livro ( title, author, publishedDate, isbn, pages, language, publisher) VALUES (?, ?)" ;
 
         try {
             const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher]);
