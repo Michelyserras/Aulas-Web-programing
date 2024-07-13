@@ -3,7 +3,7 @@ import { cadastrarProduto } from './controller/ProductController';
 
 const app = express();
 
-const PORT = 3000;
+const PORT = 3500;
 
 app.use(express.json());
 
