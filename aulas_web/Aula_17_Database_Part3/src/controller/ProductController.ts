@@ -10,7 +10,7 @@ export function cadastrarProduto (req: Request, res: Response){
         res.status(201).json(
             {
                 mensagem:"Produto adicionado com sucesso!",
-                produto: novoProduto
+                produto: novoProduto,
             }
             );
     } catch (error: any) {
