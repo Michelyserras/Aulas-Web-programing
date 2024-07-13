@@ -14,8 +14,8 @@ export class ProductRepository{
             title VARCHAR(255) NOT NULL,
             author VARCHAR(255) NOT NULL, 
             publishedDate VARCHAR(255) NOT NULL,
-            isbn VARCHAR(255) NOT NULL
-            pages INT NOT NULL
+            isbn VARCHAR(255) NOT NULL,
+            pages INT NOT NULL,
             language VARCHAR(255) NOT NULL,
             publisher VARCHAR(255) NOT NULL
         )`;
