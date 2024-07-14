@@ -32,17 +32,8 @@ export class ProductRepository{
 
         
         try{
-            const checkQuery = "select * from livros.livro where isbn = ?"; // constante para fazer o comando sql
+         
             const query = "INSERT INTO livros.livro (title, author, publishedDate, isbn, pages, language, publisher) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
-            
-            const [rows] = await executarComandoSQL(checkQuery, [isbn]);
-
-            // Se já existe um livro com esse ISBN, lança um erro
-            if (rows.length > 0) {
-                throw new Error("Esse livro já existe na base de dados.");
-            }
-            
-
             const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher]);
             console.log('Produto inserido com sucesso, ID: ', resultado.insertId);
 
@@ -57,8 +48,47 @@ export class ProductRepository{
         }
     }
 
-    async filterProduct(id: number) :Promise<Product>{
-        const query = "SELECT * FROM livros.livro where id = ?" ;
+    async findProduct(livro: any): Promise<Product | undefined>{
+
+        const query = "SELECT * FROM livros.livro where isbn = ?"
+
+        try{
+            const resultado = await executarComandoSQL(query, [livro]);
+            if (resultado.length > 0) {
+                console.log("Livro já cadastrado no banco de dados", resultado[0]);
+                return resultado[0] as Product;
+            } else {
+                return undefined;
+            }
+        } catch (err:any) {
+            console.error(`Falha ao procurar o produto de ID ${livro.isbn} gerando o erro: ${err}`);
+            throw err;
+        }  
+
+    }
+
+    
+    async findProductPorID(livro: any): Promise<Product | undefined>{
+
+        const query = "SELECT * FROM livros.livro where id = ?"
+
+        try{
+            const resultado = await executarComandoSQL(query, [livro]);
+            if (resultado.length > 0) {
+                console.log("Livro já cadastrado no banco de dados", resultado[0]);
+                return resultado[0] as Product;
+            } else {
+                return undefined;
+            }
+        } catch (err:any) {
+            console.error(`Falha ao procurar o produto de ID ${livro.isbn} gerando o erro: ${err}`);
+            throw err;
+        }  
+
+    }
+
+    async filterProduct(id: number):Promise<Product | undefined> {
+        const query = "SELECT * FROM livros.livro where id = ?" 
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
