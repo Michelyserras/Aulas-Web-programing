@@ -4,7 +4,7 @@ import { ProductService } from "../service/ProductService";
 
 const productService = new ProductService();
 
-export async function cadastrarProduto (req: Request, res: Response){
+export async function cadastrarLivro(req: Request, res: Response){
     try {
         const novoLivro = await productService.cadastrarProduto(req.body);
         res.status(201).json(
@@ -18,7 +18,7 @@ export async function cadastrarProduto (req: Request, res: Response){
     }
 };
 
-export async function atualizarProduto(req: Request, res: Response){
+export async function atualizarLivro(req: Request, res: Response){
     try {
         const livroExiste = await productService.filtrarProduto(req.query.id);
         if(livroExiste){
@@ -40,7 +40,7 @@ export async function atualizarProduto(req: Request, res: Response){
 };
 
 
-export async function filtrarProduto(req: Request, res: Response){
+export async function filtrarLivro(req: Request, res: Response){
     try {
         const livroExiste = await productService.filtrarProduto(req.query.id);
         if(livroExiste){
@@ -61,7 +61,7 @@ export async function filtrarProduto(req: Request, res: Response){
     }
 };
 
-export async function listarTodosProduto (req: Request, res: Response){
+export async function listarTodosLivros(req: Request, res: Response){
     try {
         const livros = await productService.listarTodosProdutos();
         res.status(200).json(
@@ -75,7 +75,7 @@ export async function listarTodosProduto (req: Request, res: Response){
     }
 };
 
-export async function deletarProduto(req: Request, res: Response){
+export async function deletarLivro(req: Request, res: Response){
     try {
         const livroExiste =  await productService.filtrarProduto(req.query.id);
         if(livroExiste){
