@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.post("/api/books", cadastrarProduto);
 app.get("/api/books", listarTodosProduto);
-app.get("/api/books/", filtrarProduto);
+app.get("/api/books/:", filtrarProduto);
 app.put("/api/books/", atualizarProduto);
 app.delete("/api/books", deletarProduto);
 

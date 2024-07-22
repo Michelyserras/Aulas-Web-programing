@@ -49,12 +49,9 @@ export class ProductService{
         if(!livroExiste){
             throw new Error("Esse livro não existe em nossa base de dados");
         }
-        else{
-            const produto =  await this.productRepository.filterProduct(id);
-            console.log("Service - Filtrar", produto);
-            return produto;
-        }
-        
+        const produto =  await this.productRepository.filterProduct(id);
+        console.log("Service - Filtrar", produto);
+        return produto;  
     }
 
     async atualizarProduto(produtoData: any): Promise<Product> {
