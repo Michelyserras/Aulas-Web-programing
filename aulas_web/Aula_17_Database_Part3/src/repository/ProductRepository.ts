@@ -117,12 +117,13 @@ export class ProductRepository{
         }
     }
 
-    async updateProduct(id: number,  title:string, author:string, publishedDate: string, isbn: string, pages: number, language:string, publisher:string) :Promise<Product>{
-        const query = "UPDATE vendas.product set name = ?, price = ? where id = ?;" ;
+    async updateProduct(id: number, title:string, author:string, publishedDate: string, isbn: string, pages: number, language:string, publisher:string) :Promise<Product>{
+        const query = "UPDATE livros.livro set title = ?, author = ?, publishedDate = ?, isbn = ?, pages = ?, language = ?, publisher = ? where id = ?;" 
 
         try {
-            const resultado = await executarComandoSQL(query, [id, title, author, publishedDate, isbn, pages, language, publisher]);
+            const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher, id]);
             console.log('Produto atualizado com sucesso, ID: ', resultado);
+            
             const product = new Product(id, title, author, publishedDate, isbn, pages, language, publisher);
             return new Promise<Product>((resolve)=>{
                 resolve(product);
