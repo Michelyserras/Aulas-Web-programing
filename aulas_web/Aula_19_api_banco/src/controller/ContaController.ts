@@ -1,7 +1,7 @@
-import { ContaService } from "../service/ContaService"; 
+//import { ContaService } from "../service/ContaService"; 
 import { Request, Response } from "express";
 
-    const serviceConta:ContaService = new ContaService();
+/*    const serviceConta:ContaService = new ContaService();
 
     export async function cadastrarConta(req: Request, res:Response){
         try {
@@ -69,4 +69,4 @@ import { Request, Response } from "express";
         } catch (error: any) {
             res.status(400).json({ message: error.message});
         }
-    }
+    }*/

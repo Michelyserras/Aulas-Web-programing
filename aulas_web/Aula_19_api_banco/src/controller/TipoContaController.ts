@@ -1,7 +1,7 @@
-import { TipoContaService } from "../service/TipoContaService"; 
+import { ServiceTipoConta } from "../service/serviceTipoConta";
 import { Request, Response } from "express";
 
-    const serviceTipoConta:TipoContaService = new TipoContaService();
+    const serviceTipoConta:ServiceTipoConta = new ServiceTipoConta();
 
     export async function cadastrarTipoConta(req: Request, res:Response){
         try {
@@ -17,7 +17,7 @@ import { Request, Response } from "express";
         }
     }
 
-    export async function updateTipoConta(req: Request, res:Response){
+  /*  export async function updateTipoConta(req: Request, res:Response){
         try {
             const tipoConta = await serviceTipoConta.atualizaTipoConta(req.body);
             res.status(200).json(
@@ -69,4 +69,4 @@ import { Request, Response } from "express";
         } catch (error: any) {
             res.status(400).json({ message: error.message});
         }
-    }
+    }*/

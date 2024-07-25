@@ -7,19 +7,19 @@ export class ServiceTipoConta{
     
 
     async criaTipoConta(typeData: TipoConta): Promise<TipoConta> {
-        const { descricao, codigoTipoConta} = typeData;
-         if(!descricao || !codigoTipoConta){
+        const { id, descricao} = typeData;
+         if(!id || !descricao){
             throw new Error("Informações incompletas");
          }
         
-        const tipoContaExiste = this.tipoContaRepository.filtrarTipoConta(typeData.codigoTipoConta);
+        const tipoContaExiste = await this.tipoContaRepository.filtrarTipoConta(typeData.id);
 
         if(!tipoContaExiste){
-            const novoTipo = await this.tipoContaRepository.criaTipoConta(descricao, codigoTipoConta);
+            const novoTipo = await this.tipoContaRepository.criaTipoConta(id, descricao);
             return novoTipo;
         }
         else{
-            throw new Error(`Já existe um tipo de conta cadastrada com o id = ${typeData.codigoTipoConta} em nossa base de dados`);
+            throw new Error(`Já existe um tipo de conta cadastrada com o id = ${typeData.id} em nossa base de dados`);
         }
 
 
