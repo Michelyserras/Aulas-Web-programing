@@ -45,6 +45,10 @@ export class tipoContaRepository{
             const resultado = await executarComandoSQL(query, [id]);
             console.log("tipo de conta localizado com sucesso", resultado);
 
+            if(!resultado){
+                throw new Error("Esse tipo de conta já existe na base de dados");
+            }
+
             return new Promise<TipoConta>((resolve)=>{
                 resolve(resultado);
             })
