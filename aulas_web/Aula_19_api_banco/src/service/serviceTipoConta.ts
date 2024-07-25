@@ -12,6 +12,8 @@ export class ServiceTipoConta{
             throw new Error("Informações incompletas");
          }
 
+         
+
          // verificar se já existe um tipo de cont cadastrada no banco
 
          //inserir

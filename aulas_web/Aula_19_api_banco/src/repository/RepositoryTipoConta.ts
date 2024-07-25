@@ -38,4 +38,20 @@ export class tipoContaRepository{
 
     }
 
+    async filtrarTipoConta(id:number): Promise<TipoConta | undefined> {
+        try{
+
+            const query = `selectc * from banco.tipo_conta where codigo_tipo_conta = ?`
+            const resultado = await executarComandoSQL(query, [id]);
+            console.log("tipo de conta localizado com sucesso", resultado);
+
+            return new Promise<TipoConta>((resolve)=>{
+                resolve(resultado);
+            })
+
+        } catch(err){
+            console.error('Erro ao buscar tipo de conta pelo codigo');
+        }
+    }
+
 }
