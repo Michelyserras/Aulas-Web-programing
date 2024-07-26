@@ -11,12 +11,14 @@ export class ClienteRepository{
         const query = `
         CREATE TABLE IF NOT EXISTS banco.cliente (
             ID AUTO_INCREMENT INT PRIMARY KEY,
+            NOME VARCHAR(50) NOT NULL,
             CPF VARCHAR(11) NOT NULL,
             DATANASCIMENTO DATE NOT NULL
         );
         `
         try{
             const resultado = await executarComandoSQL(query, []);
+            
         }
         catch(err){
             console.error()
@@ -31,7 +33,7 @@ export class ClienteRepository{
             clienteData.id = resultado.insertId;
 
             return clienteData;
-            
+
         } catch(err){
             console.error("Erro ao adicionar cliente");
             throw err;
