@@ -42,14 +42,15 @@ export class tipoContaRepository{
         }
     }
 
-    async filtrarTipoConta(id:number): Promise<TipoConta | undefined> {
+    async filtrarTipoConta(descricao: any): Promise<TipoConta | undefined> {
        
         try{
-            const query = `select * from banco.tipo_Conta where id = ?;`;
-            const resultado = await executarComandoSQL(query, [id]);
+            const query = `select * from banco.tipo_Conta where descricao = ?;`;
+
+            const resultado = await executarComandoSQL(query, [descricao]);
             console.log("tipo de conta localizado com sucesso", resultado);
 
-            if(resultado.lenght > 0){
+            if(resultado.length > 0){
                 console.log("Esse tipo de conta já existe na base de dados", resultado);
                 return resultado[0] as TipoConta; 
             }
