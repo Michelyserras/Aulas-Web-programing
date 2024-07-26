@@ -11,7 +11,7 @@ export class tipoContaRepository{
        CREATE TABLE IF NOT EXISTS banco.tipo_Conta (
         id int primary key,
         descricao varchar(255),
-        codigo_tipo_conta varchar(50)
+        codigo_tipo_conta  NOT NULL
        );`;
 
        try {
