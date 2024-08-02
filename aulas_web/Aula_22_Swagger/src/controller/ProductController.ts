@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ProductService } from "../service/ProductService";
-import { Controller, Route, Body, Res, Tags, TsoaResponse } from "tsoa";
+import { Controller, Route, Body, Res, Tags, TsoaResponse, Post, Get, Put} from "tsoa";
 import { ProductRequestDto } from "../model/dto/ProductRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 
@@ -9,7 +9,7 @@ import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 export class ProductController{ 
     productService = new ProductService();
     
-   
+    @Post()
     async cadastrarProduto(
         @Body() dto:ProductRequestDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
@@ -17,11 +17,11 @@ export class ProductController{
     ): Promise<void> {
             try {
                 const novoProduto =  await this.productService.cadastrarProduto(dto);
-               return sucess(201, new BasicResponseDto("Produto criado ccom sucesso", novoProduto))
+               return sucess(201, new BasicResponseDto("Produto criado ccom sucesso!", novoProduto));
             } catch (error: any) {
                 return fail(400, new BasicResponseDto(error.message, undefined));
             }
-        };
+    };
         
     
 
