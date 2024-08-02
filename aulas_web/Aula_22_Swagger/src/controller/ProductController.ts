@@ -1,74 +1,89 @@
 import { Request, Response } from "express";
 import { ProductService } from "../service/ProductService";
+import { Controller, Route, Body, Res, Tags, TsoaResponse } from "tsoa";
+import { ProductRequestDto } from "../model/dto/ProductRequestDto";
+import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 
-const productService = new ProductService();
-
-export async function cadastrarProduto (req: Request, res: Response){
-    try {
-        const novoProduto = await productService.cadastrarProduto(req.body);
-        res.status(201).json(
-            {
-                mensagem:"Produto adicionado com sucesso!",
-                produto:novoProduto
+@Route("product")
+@Tags("Product")
+export class ProductController{ 
+    productService = new ProductService();
+    
+   
+    async cadastrarProduto(
+        @Body() dto:ProductRequestDto,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+    ): Promise<void> {
+            try {
+                const novoProduto =  await this.productService.cadastrarProduto(dto);
+               return sucess(201, new BasicResponseDto("Produto criado ccom sucesso", novoProduto))
+            } catch (error: any) {
+                return fail(400, new BasicResponseDto(error.message, undefined));
             }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
+        };
+        
+    
 
-export async function atualizarProduto (req: Request, res: Response){
-    try {
-        const produto = await productService.atualizarProduto(req.body);
-        res.status(200).json(
-            {
-                mensagem:"Produto atualizado com sucesso!",
-                produto:produto
+    async atualizarProduto (req: Request, res: Response){
+            try {
+                const produto = await this.productService.atualizarProduto(req.body);
+                res.status(200).json(
+                    {
+                        mensagem:"Produto atualizado com sucesso!",
+                        produto:produto
+                    }
+                );
+            } catch (error: any) {
+                res.status(400).json({ message: error.message});
             }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
+        };
+        
+    
 
-export async function deletarProduto (req: Request, res: Response){
-    try {
-        const produto = await productService.deletarProduto(req.body);
-        res.status(200).json(
-            {
-                mensagem:"Produto deletado com sucesso!",
-                produto:produto
+    async deletarProduto (req: Request, res: Response){
+            try {
+                const produto = await this.productService.deletarProduto(req.body);
+                res.status(200).json(
+                    {
+                        mensagem:"Produto deletado com sucesso!",
+                        produto:produto
+                    }
+                );
+            } catch (error: any) {
+                res.status(400).json({ message: error.message});
             }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
+        };
+        
+    
 
-export async function filtrarProduto (req: Request, res: Response){
-    try {
-        const produto = await productService.filtrarProduto(req.query.id);
-        res.status(200).json(
-            {
-                mensagem:"Produto encontrado com sucesso!",
-                produto:produto
+    async filtrarProduto (req: Request, res: Response){
+            try {
+                const produto = await this.productService.filtrarProduto(req.query.id);
+                res.status(200).json(
+                    {
+                        mensagem:"Produto encontrado com sucesso!",
+                        produto:produto
+                    }
+                );
+            } catch (error: any) {
+                res.status(400).json({ message: error.message});
             }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
+        };
+        
+    
 
-export async function listarTodosProduto (req: Request, res: Response){
-    try {
-        const produtos = await productService.listarTodosProdutos();
-        res.status(200).json(
-            {
-                mensagem:"Produtos listados com sucesso!",
-                produtos:produtos
+    async listarTodosProduto (req: Request, res: Response){
+            try {
+                const produtos = await this.productService.listarTodosProdutos();
+                res.status(200).json(
+                    {
+                        mensagem:"Produtos listados com sucesso!",
+                        produtos:produtos
+                    }
+                    );
+            } catch (error: any) {
+                res.status(400).json({ message: error.message});
             }
-            );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
+        };
+}
